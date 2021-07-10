@@ -160,7 +160,7 @@ public class TripService implements ITripService {
         for(Map.Entry<String,Boolean> mp : stations.entrySet())
         {
             if(mp.getValue() == true)
-                time+=5;
+                time+=7;
             else
                 time+=2;
         }

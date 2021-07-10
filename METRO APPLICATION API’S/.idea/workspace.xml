@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="19892fe4-9b2d-44b5-896f-4987eb9dc5eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/metroapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/metroapp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TripService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TripService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,19 +46,6 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MetroappApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="metroapp" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.metroapp.MetroappApplication" />
@@ -79,7 +65,9 @@
       <workItem from="1625836651542" duration="1266000" />
       <workItem from="1625847890147" duration="758000" />
       <workItem from="1625854120816" duration="13244000" />
-      <workItem from="1625899579028" duration="14334000" />
+      <workItem from="1625899579028" duration="14727000" />
+      <workItem from="1625915007052" duration="22000" />
+      <workItem from="1625925432927" duration="10000" />
     </task>
     <servers />
   </component>
