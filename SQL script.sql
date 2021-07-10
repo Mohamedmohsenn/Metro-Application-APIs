@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `basic_ticket`
+--
+
+DROP TABLE IF EXISTS `basic_ticket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `basic_ticket` (
+  `basicTicketID` int NOT NULL AUTO_INCREMENT,
+  `basicTicketPrice` int DEFAULT NULL,
+  `limit` int DEFAULT NULL,
+  PRIMARY KEY (`basicTicketID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `basic_ticket`
+--
+
+LOCK TABLES `basic_ticket` WRITE;
+/*!40000 ALTER TABLE `basic_ticket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `basic_ticket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `line`
 --
 
@@ -51,7 +75,7 @@ CREATE TABLE `station` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,8 +111,38 @@ CREATE TABLE `station_line` (
 
 LOCK TABLES `station_line` WRITE;
 /*!40000 ALTER TABLE `station_line` DISABLE KEYS */;
-INSERT INTO `station_line` VALUES (8,1),(11,1),(32,1),(33,1),(34,1),(35,1),(36,1),(37,1),(38,1),(39,1),(40,1),(41,1),(42,1),(43,1),(44,1),(45,1),(46,1),(47,1),(48,1),(49,1),(50,1),(51,1),(52,1),(53,1),(54,1),(55,1),(56,1),(57,1),(58,1),(59,1),(60,1),(61,1),(62,1),(1,2),(2,2),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(9,2),(10,2),(11,2),(12,2),(13,2),(14,2),(15,2),(16,2),(17,2),(63,2),(64,2),(10,3),(18,3),(19,3),(20,3),(21,3),(22,3),(23,3),(24,3),(25,3),(26,3),(27,3),(28,3),(29,3),(30,3),(31,3);
+INSERT INTO `station_line` VALUES (8,1),(11,1),(32,1),(33,1),(34,1),(35,1),(36,1),(37,1),(38,1),(39,1),(40,1),(41,1),(42,1),(43,1),(44,1),(45,1),(46,1),(47,1),(48,1),(49,1),(50,1),(51,1),(52,1),(53,1),(54,1),(55,1),(56,1),(57,1),(58,1),(59,1),(60,1),(61,1),(62,1),(66,1),(1,2),(2,2),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(9,2),(10,2),(11,2),(12,2),(13,2),(14,2),(15,2),(16,2),(17,2),(63,2),(64,2),(65,2),(10,3),(18,3),(19,3),(20,3),(21,3),(22,3),(23,3),(24,3),(25,3),(26,3),(27,3),(28,3),(29,3),(30,3),(31,3),(67,3);
 /*!40000 ALTER TABLE `station_line` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ticket`
+--
+
+DROP TABLE IF EXISTS `ticket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ticket` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `hexaCode` varchar(45) DEFAULT NULL,
+  `vaild` tinyint DEFAULT NULL,
+  `basicTicketID` int NOT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ticket_basic_ticket1_idx` (`basicTicketID`),
+  KEY `fk_ticket_user1_idx` (`user_id`),
+  CONSTRAINT `fk_ticket_basic_ticket1` FOREIGN KEY (`basicTicketID`) REFERENCES `basic_ticket` (`basicTicketID`),
+  CONSTRAINT `fk_ticket_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ticket`
+--
+
+LOCK TABLES `ticket` WRITE;
+/*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -127,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-10 13:01:00
+-- Dump completed on 2021-07-11  1:10:32
