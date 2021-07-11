@@ -12,8 +12,8 @@ import javax.persistence.*;
 public class Ticket {
     private Integer id;
     private Integer price;
+    private Integer maximum_trips;
     private Boolean valid;
-    private Integer limit;
     private User user;
 
 
@@ -35,6 +35,13 @@ public class Ticket {
         this.price = price;
     }
 
+    public Integer getMaximumTrips() {
+        return maximum_trips;
+    }
+
+    public void setMaximumTrips(Integer maximum_trips) {
+        this.maximum_trips = maximum_trips;
+    }
 
     public Boolean getValid() {
         return valid;
@@ -43,15 +50,6 @@ public class Ticket {
     public void setValid(Boolean valid) {
         this.valid = valid;
     }
-
-    public Integer getLimit() {
-        return limit;
-    }
-
-    public void setLimit(Integer limit) {
-        this.limit = limit;
-    }
-
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
