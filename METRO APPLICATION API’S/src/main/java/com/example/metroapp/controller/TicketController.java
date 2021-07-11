@@ -30,10 +30,26 @@ public class TicketController {
     }
 
     @GetMapping("/GetTicketPrice")
-    public ResponseEntity<?> getTicketPrice(String source,String destination)
+    public ResponseEntity<?> getTicketPrice(@RequestParam String source,@RequestParam String destination)
     {
         Map<String, Integer> mp = new HashMap<>();
         mp.put("ticket_price",ticketService.getTicketPrice(source,destination));
         return new ResponseEntity<>(mp, HttpStatus.OK);
+    }
+
+    @GetMapping("/BuyTicket")
+    public ResponseEntity<?> buyTicket(@RequestParam Integer userID, @RequestParam Integer price)
+    {
+        Map<String, String> map = new HashMap<>();
+        Boolean response = ticketService.buyTicket(userID, price);
+        if(response)
+        {
+            map.put("message","success");
+        }
+        else
+        {
+            map.put("message","failed");
+        }
+        return new ResponseEntity<>(map,HttpStatus.OK);
     }
 }
