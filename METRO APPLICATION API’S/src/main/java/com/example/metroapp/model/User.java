@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,8 @@ public class User {
     private String user_name;
     private String email;
     private String password;
+    private String phone_number;
+    private Date date_of_birth;
     private Integer balance;
     private Set<Ticket> tickets = new HashSet<>();
 
@@ -21,14 +24,15 @@ public class User {
     public User(){
     }
 
-    public User(Integer user_id, String user_name, String email, String password, Integer balance) {
+    public User(Integer user_id, String user_name, String email, String password, String phone_number, Date date_of_birth, Integer balance) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.email = email;
         this.password = password;
+        this.phone_number = phone_number;
+        this.date_of_birth = date_of_birth;
         this.balance = balance;
     }
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +66,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public Date getDate_of_birth() {
+        return date_of_birth;
+    }
+
+    public void setDate_of_birth(Date date_of_birth) {
+        this.date_of_birth = date_of_birth;
     }
 
     public Integer getBalance() {
