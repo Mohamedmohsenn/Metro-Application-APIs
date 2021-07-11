@@ -1,19 +1,22 @@
 package com.example.metroapp.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @DynamicInsert
-@Table(name="user")
 public class User {
-
     private Integer user_id;
     private String user_name;
     private String email;
     private String password;
     private Integer balance;
+    private Set<Ticket> tickets = new HashSet<>();
+
 
     public User(){
     }
@@ -67,6 +70,17 @@ public class User {
 
     public void setBalance(Integer balance) {
         this.balance = balance;
+    }
+
+
+    @OneToMany(mappedBy="user")
+    @JsonManagedReference
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> InputTickets) {
+        tickets.addAll(InputTickets);
     }
 }
 

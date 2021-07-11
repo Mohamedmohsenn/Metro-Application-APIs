@@ -16,30 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `basic_ticket`
---
-
-DROP TABLE IF EXISTS `basic_ticket`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `basic_ticket` (
-  `basicTicketID` int NOT NULL AUTO_INCREMENT,
-  `basicTicketPrice` int DEFAULT NULL,
-  `limit` int DEFAULT NULL,
-  PRIMARY KEY (`basicTicketID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `basic_ticket`
---
-
-LOCK TABLES `basic_ticket` WRITE;
-/*!40000 ALTER TABLE `basic_ticket` DISABLE KEYS */;
-/*!40000 ALTER TABLE `basic_ticket` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `line`
 --
 
@@ -124,16 +100,14 @@ DROP TABLE IF EXISTS `ticket`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ticket` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `hexaCode` varchar(45) DEFAULT NULL,
-  `vaild` tinyint DEFAULT NULL,
-  `basicTicketID` int NOT NULL,
+  `price` int NOT NULL,
+  `valid` tinyint DEFAULT NULL,
+  `limit` int NOT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_ticket_basic_ticket1_idx` (`basicTicketID`),
   KEY `fk_ticket_user1_idx` (`user_id`),
-  CONSTRAINT `fk_ticket_basic_ticket1` FOREIGN KEY (`basicTicketID`) REFERENCES `basic_ticket` (`basicTicketID`),
   CONSTRAINT `fk_ticket_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,6 +116,7 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+INSERT INTO `ticket` VALUES (1,3,1,9,1),(2,3,1,9,1);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,4 +156,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-11  1:10:32
+-- Dump completed on 2021-07-11 18:03:02
