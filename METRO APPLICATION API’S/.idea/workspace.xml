@@ -6,10 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="19892fe4-9b2d-44b5-896f-4987eb9dc5eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/MetroappApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/MetroappApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/TicketController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ITicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ITicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TicketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/MetroappApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/MetroappApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/AccountController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/StationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/StationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/TicketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/TicketController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/ITicketService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/ITicketService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/Ticket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/TicketService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/TicketService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +91,7 @@
       <workItem from="1625925432927" duration="10000" />
       <workItem from="1625959050039" duration="1784000" />
       <workItem from="1626004604947" duration="13605000" />
-      <workItem from="1626086025328" duration="703000" />
+      <workItem from="1626086025328" duration="5108000" />
     </task>
     <servers />
   </component>

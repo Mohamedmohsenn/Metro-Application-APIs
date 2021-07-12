@@ -19,7 +19,7 @@ public class AccountController {
     public ResponseEntity<HashMap<String, String>> signUp(@RequestBody User user)
     {
         HashMap<String, String> map = new HashMap<>();
-        if(user.getEmail() == null || user.getPassword() == null || user.getUser_name() == null )
+        if(user.getEmail() == null || user.getPassword() == null || user.getUser_name() == null || user.getPhone_number() == null )
         {
             map.put("message","failed");
             return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);

@@ -8,5 +8,5 @@ import java.util.Set;
 public interface ITicketService {
     public Set<Ticket> getUserTickets(Integer userID);
     public Integer getTicketPrice(String source,String destination);
-    public Boolean buyTicketUsingWalet(Integer userID, Integer price);
+    public Boolean buyTicketUsingWallet(Integer userID, Integer price);
 }

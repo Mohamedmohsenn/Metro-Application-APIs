@@ -42,7 +42,7 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public Boolean buyTicketUsingWalet(Integer userID, Integer price)
+    public Boolean buyTicketUsingWallet(Integer userID, Integer price)
     {
         User user = userRepo.findById(userID).get();
         if(user.getBalance() < price)
