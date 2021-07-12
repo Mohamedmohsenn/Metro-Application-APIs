@@ -8,8 +8,6 @@ import com.example.metroapp.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -44,7 +42,7 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public Boolean buyTicket(Integer userID, Integer price)
+    public Boolean buyTicketUsingWalet(Integer userID, Integer price)
     {
         User user = userRepo.findById(userID).get();
         if(user.getBalance() < price)

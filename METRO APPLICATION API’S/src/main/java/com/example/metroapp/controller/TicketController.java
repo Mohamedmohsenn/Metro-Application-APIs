@@ -38,10 +38,10 @@ public class TicketController {
     }
 
     @GetMapping("/BuyTicket")
-    public ResponseEntity<?> buyTicket(@RequestParam Integer userID, @RequestParam Integer price)
+    public ResponseEntity<?> buyTicketUsingWalet(@RequestParam Integer userID, @RequestParam Integer price)
     {
         Map<String, String> map = new HashMap<>();
-        Boolean response = ticketService.buyTicket(userID, price);
+        Boolean response = ticketService.buyTicketUsingWalet(userID, price);
         if(response)
         {
             map.put("message","success");

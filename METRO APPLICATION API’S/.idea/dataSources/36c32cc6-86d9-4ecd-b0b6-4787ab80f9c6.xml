@@ -912,36 +912,40 @@ SELECT|sys.sys_config
       <ObjectGrants>SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,RELOAD,SHUTDOWN,PROCESS,FILE,REFERENCES,INDEX,ALTER,SHOW DATABASES,SUPER,CREATE TEMPORARY TABLES,LOCK TABLES,EXECUTE,REPLICATION SLAVE,REPLICATION CLIENT,CREATE VIEW,SHOW VIEW,CREATE ROUTINE,ALTER ROUTINE,CREATE USER,EVENT,TRIGGER,CREATE TABLESPACE,CREATE ROLE,DROP ROLE!
 </ObjectGrants>
     </user>
-    <table id="285" parent="3" name="basic_ticket">
-      <Collation>utf8mb4_unicode_ci</Collation>
-    </table>
-    <table id="286" parent="3" name="line"/>
-    <table id="287" parent="3" name="station"/>
-    <table id="288" parent="3" name="station_line"/>
-    <table id="289" parent="3" name="ticket"/>
-    <table id="290" parent="3" name="user"/>
-    <column id="291" parent="285" name="basicTicketID">
+    <table id="285" parent="3" name="line"/>
+    <table id="286" parent="3" name="station"/>
+    <table id="287" parent="3" name="station_line"/>
+    <table id="288" parent="3" name="ticket"/>
+    <table id="289" parent="3" name="user"/>
+    <column id="290" parent="285" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="291" parent="285" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="292" parent="286" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="292" parent="285" name="basicTicketPrice">
+    <column id="293" parent="286" name="name">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(45)|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="293" parent="285" name="limit">
+    <column id="294" parent="286" name="latitude">
       <Position>3</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <key id="294" parent="285" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>basicTicketID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="295" parent="286" name="id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
+    <column id="295" parent="286" name="longitude">
+      <Position>4</Position>
+      <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <key id="296" parent="286" name="PRIMARY">
@@ -949,134 +953,108 @@ SELECT|sys.sys_config
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="297" parent="287" name="id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="298" parent="287" name="name">
-      <Position>2</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="299" parent="287" name="latitude">
-      <Position>3</Position>
-      <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="300" parent="287" name="longitude">
-      <Position>4</Position>
-      <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="301" parent="287" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="302" parent="288" name="station_id">
+    <column id="297" parent="287" name="station_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="303" parent="288" name="line_id">
+    <column id="298" parent="287" name="line_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="304" parent="288" name="fk_line_id_idx">
+    <index id="299" parent="287" name="fk_line_id_idx">
       <ColNames>line_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="305" parent="288" name="PRIMARY">
+    <key id="300" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>station_id
 line_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="306" parent="288" name="fk_station_id">
+    <foreign-key id="301" parent="287" name="fk_station_id">
       <ColNames>station_id</ColNames>
       <RefTableName>station</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="307" parent="288" name="fk_line_id">
+    <foreign-key id="302" parent="287" name="fk_line_id">
       <ColNames>line_id</ColNames>
       <RefTableName>line</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="308" parent="289" name="id">
+    <column id="303" parent="288" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="309" parent="289" name="hexaCode">
+    <column id="304" parent="288" name="price">
       <Position>2</Position>
-      <DataType>varchar(45)|0s</DataType>
-    </column>
-    <column id="310" parent="289" name="vaild">
-      <Position>3</Position>
-      <DataType>tinyint|0s</DataType>
-    </column>
-    <column id="311" parent="289" name="basicTicketID">
-      <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="312" parent="289" name="user_id">
+    <column id="305" parent="288" name="maximum_trips">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="306" parent="288" name="valid">
+      <Position>4</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="307" parent="288" name="user_id">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="313" parent="289" name="fk_ticket_basic_ticket1_idx">
-      <ColNames>basicTicketID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="314" parent="289" name="fk_ticket_user1_idx">
+    <index id="308" parent="288" name="fk_userID_idx">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="315" parent="289" name="PRIMARY">
+    <key id="309" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="316" parent="289" name="fk_ticket_basic_ticket1">
-      <ColNames>basicTicketID</ColNames>
-      <RefTableName>basic_ticket</RefTableName>
-      <RefColNames>basicTicketID</RefColNames>
-    </foreign-key>
-    <foreign-key id="317" parent="289" name="fk_ticket_user1">
+    <foreign-key id="310" parent="288" name="fk_user_id">
       <ColNames>user_id</ColNames>
       <RefTableName>user</RefTableName>
       <RefColNames>user_id</RefColNames>
     </foreign-key>
-    <column id="318" parent="290" name="user_id">
+    <column id="311" parent="289" name="user_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="319" parent="290" name="user_name">
+    <column id="312" parent="289" name="user_name">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <column id="320" parent="290" name="email">
+    <column id="313" parent="289" name="email">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <column id="321" parent="290" name="password">
+    <column id="314" parent="289" name="password">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <column id="322" parent="290" name="balance">
+    <column id="315" parent="289" name="phone_number">
       <Position>5</Position>
+      <DataType>varchar(45)|0s</DataType>
+    </column>
+    <column id="316" parent="289" name="date_of_birth">
+      <Position>6</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="317" parent="289" name="balance">
+      <Position>7</Position>
       <DataType>int|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
-      <ColumnKind>generated-virtual</ColumnKind>
     </column>
-    <key id="323" parent="290" name="PRIMARY">
+    <key id="318" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
