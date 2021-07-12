@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19892fe4-9b2d-44b5-896f-4987eb9dc5eb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36c32cc6-86d9-4ecd-b0b6-4787ab80f9c6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36c32cc6-86d9-4ecd-b0b6-4787ab80f9c6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TripService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TripService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/TripService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/TripService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +28,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1v50T0dOuX8tyIcBgwNHpNlwdyH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -38,6 +50,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -46,6 +59,19 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MetroappApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="metroapp" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.metroapp.MetroappApplication" />
@@ -68,6 +94,8 @@
       <workItem from="1625899579028" duration="14727000" />
       <workItem from="1625915007052" duration="22000" />
       <workItem from="1625925432927" duration="10000" />
+      <workItem from="1625959050039" duration="1784000" />
+      <workItem from="1626004604947" duration="10373000" />
     </task>
     <servers />
   </component>

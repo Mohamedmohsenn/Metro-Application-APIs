@@ -22,18 +22,18 @@ public class AccountController {
         if(user.getEmail() == null || user.getPassword() == null || user.getUser_name() == null )
         {
             map.put("message","failed");
-            return new ResponseEntity<HashMap<String, String>>(map,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
         }
         else if(userService.SignUp(user))
         {
             map.put("message","success");
-            return new ResponseEntity<HashMap<String, String>>(map,HttpStatus.OK);
+            return new ResponseEntity<>(map,HttpStatus.OK);
 
         }
         else
         {
             map.put("message","failed");
-            return new ResponseEntity<HashMap<String, String>>(map,HttpStatus.OK);
+            return new ResponseEntity<>(map,HttpStatus.OK);
         }
     }
 
@@ -44,17 +44,17 @@ public class AccountController {
         if(user.getEmail() == null || user.getPassword() == null)
         {
             map.put("message","failed");
-            return new ResponseEntity<HashMap<String, String>>(map,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
         }
         else if(userService.login(user.getEmail(),user.getPassword()))
         {
             map.put("message","success");
-            return new ResponseEntity<HashMap<String, String>>(map,HttpStatus.OK);
+            return new ResponseEntity<>(map,HttpStatus.OK);
         }
         else
         {
             map.put("message","failed");
-            return new ResponseEntity<HashMap<String, String>>(map,HttpStatus.OK);
+            return new ResponseEntity<>(map,HttpStatus.OK);
         }
     }
 }

@@ -16,30 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `basic_ticket`
---
-
-DROP TABLE IF EXISTS `basic_ticket`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `basic_ticket` (
-  `basicTicketID` int NOT NULL AUTO_INCREMENT,
-  `basicTicketPrice` int DEFAULT NULL,
-  `limit` int DEFAULT NULL,
-  PRIMARY KEY (`basicTicketID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `basic_ticket`
---
-
-LOCK TABLES `basic_ticket` WRITE;
-/*!40000 ALTER TABLE `basic_ticket` DISABLE KEYS */;
-/*!40000 ALTER TABLE `basic_ticket` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `line`
 --
 
@@ -124,16 +100,14 @@ DROP TABLE IF EXISTS `ticket`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ticket` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `hexaCode` varchar(45) DEFAULT NULL,
-  `vaild` tinyint DEFAULT NULL,
-  `basicTicketID` int NOT NULL,
+  `price` int NOT NULL,
+  `maximum_trips` int NOT NULL,
+  `valid` tinyint NOT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_ticket_basic_ticket1_idx` (`basicTicketID`),
-  KEY `fk_ticket_user1_idx` (`user_id`),
-  CONSTRAINT `fk_ticket_basic_ticket1` FOREIGN KEY (`basicTicketID`) REFERENCES `basic_ticket` (`basicTicketID`),
-  CONSTRAINT `fk_ticket_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_userID_idx` (`user_id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,6 +116,7 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+INSERT INTO `ticket` VALUES (1,5,9,1,1);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,7 +132,9 @@ CREATE TABLE `user` (
   `user_name` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `balance` int GENERATED ALWAYS AS (0) VIRTUAL,
+  `phone_number` varchar(45) DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `balance` int DEFAULT '0',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -168,7 +145,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`user_id`, `user_name`, `email`, `password`) VALUES (1,'mohsen','midomohsen11@gmail.com','1234'),(2,'bakr','mbakr@gmail.com','1234'),(3,'mido','msameh@gmail.com','1234'),(4,'sameh','msameh99@gmail.com','1234');
+INSERT INTO `user` VALUES (1,'mohsen','midomohsen11@gmail.com','1234',NULL,NULL,0),(2,'bakr','mbakr@gmail.com','1234',NULL,NULL,5),(3,'mido','msameh@gmail.com','1234',NULL,NULL,0),(4,'sameh','msameh99@gmail.com','1234',NULL,NULL,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -181,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-11  1:10:32
+-- Dump completed on 2021-07-11 21:39:08
