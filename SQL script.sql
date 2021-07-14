@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
 --
 -- Host: localhost    Database: metro_app
 -- ------------------------------------------------------
--- Server version	8.0.22
+-- Server version	8.0.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -92,6 +92,52 @@ INSERT INTO `station_line` VALUES (8,1),(11,1),(32,1),(33,1),(34,1),(35,1),(36,1
 UNLOCK TABLES;
 
 --
+-- Table structure for table `stripe_charge`
+--
+
+DROP TABLE IF EXISTS `stripe_charge`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `stripe_charge` (
+  `id` varchar(255) NOT NULL,
+  `amount` bigint DEFAULT NULL,
+  `amount_captured` bigint DEFAULT NULL,
+  `amount_refunded` bigint DEFAULT NULL,
+  `application_fee_amount` bigint DEFAULT NULL,
+  `authorization_code` varchar(255) DEFAULT NULL,
+  `calculated_statement_descriptor` varchar(255) DEFAULT NULL,
+  `captured` bit(1) DEFAULT NULL,
+  `created` bit(1) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `customer_id` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `disputed` bit(1) DEFAULT NULL,
+  `failure_code` varchar(255) DEFAULT NULL,
+  `failure_message` varchar(255) DEFAULT NULL,
+  `livemode` bit(1) DEFAULT NULL,
+  `object` varchar(255) DEFAULT NULL,
+  `paid` bit(1) DEFAULT NULL,
+  `payment_method_id` varchar(255) DEFAULT NULL,
+  `receipt_number` varchar(255) DEFAULT NULL,
+  `receipt_url` varchar(255) DEFAULT NULL,
+  `refunded` bit(1) DEFAULT NULL,
+  `statement_descriptor` varchar(255) DEFAULT NULL,
+  `statement_descriptor_suffix` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `stripe_charge`
+--
+
+LOCK TABLES `stripe_charge` WRITE;
+/*!40000 ALTER TABLE `stripe_charge` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stripe_charge` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ticket`
 --
 
@@ -107,7 +153,7 @@ CREATE TABLE `ticket` (
   PRIMARY KEY (`id`),
   KEY `fk_userID_idx` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +162,7 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-INSERT INTO `ticket` VALUES (1,5,9,1,1);
+INSERT INTO `ticket` VALUES (3,5,9,1,9);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,14 +175,21 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `user_id` int NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `username` varchar(45) NOT NULL,
+  `fullname` varchar(255) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `phone_number` varchar(45) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
-  `balance` int DEFAULT '0',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `balance` double DEFAULT '0',
+  `role` varchar(45) NOT NULL DEFAULT 'user',
+  `stripe_id` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `phone_number_UNIQUE` (`phone_number`),
+  UNIQUE KEY `stripe_id_UNIQUE` (`stripe_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +198,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'mohsen','midomohsen11@gmail.com','1234',NULL,NULL,0),(2,'bakr','mbakr@gmail.com','1234',NULL,NULL,5),(3,'mido','msameh@gmail.com','1234',NULL,NULL,0),(4,'sameh','msameh99@gmail.com','1234',NULL,NULL,0);
+INSERT INTO `user` VALUES (9,'Ahmed','Ahmed Ibrahim','Ahmed@gmail.com','$2a$10$soOgAzKo0YPziSHQKYNFDudzS.n5oInnNgC8kb4tZLrWbWjyC3/Am','0115','1999-02-02',57,'user','cus_JqrwgqkQYJpLWq'),(10,'Mohsen','Mohamed Mohsen','Mohsen@gmail.com','$2a$10$jFpoZOhZpbBnXDOZwPC4ROJVv3DVe/MlIPE/HbhgLUeixKUce2xFK','0113','1999-02-04',0,'user','cus_JqrzkDdu1rl4Zd');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -158,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-11 21:39:08
+-- Dump completed on 2021-07-14 18:08:28
