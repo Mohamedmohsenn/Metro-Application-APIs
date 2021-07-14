@@ -1,24 +1,53 @@
 package com.example.metroapp.controller;
 
 import com.example.metroapp.interfaces.IAccountService;
+import com.example.metroapp.interfaces.IPaymentService;
 import com.example.metroapp.model.User;
 
+import com.example.metroapp.payload.LoginRequest;
+import com.example.metroapp.payload.SignUpRequest;
+import com.example.metroapp.repository.UserRepo;
+import com.example.metroapp.security.jwt.JwtUtils;
+import com.example.metroapp.security.services.UserDetailsImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.stripe.exception.*;
+import com.stripe.net.StripeResponse;
+import org.dom4j.tree.BackedList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 
 @RestController
 public class AccountController {
     @Autowired
     private IAccountService userService;
+    @Autowired
+    AuthenticationManager authenticationManager;
+    @Autowired
+    PasswordEncoder encoder;
+    @Autowired
+    UserRepo userRepository;
+    @Autowired
+    JwtUtils jwtUtils;
+    @Autowired
+    IPaymentService stripeService;
 
-    @PostMapping("/SignUp")
-    public ResponseEntity<HashMap<String, String>> signUp(@RequestBody User user)
+    @PostMapping("auth/SignUp")
+    public ResponseEntity<HashMap<String, String>> signUp(@Valid @RequestBody SignUpRequest signUpRequest)
     {
         HashMap<String, String> map = new HashMap<>();
+<<<<<<< Updated upstream
         if(user.getEmail() == null || user.getPassword() == null || user.getUser_name() == null || user.getPhone_number() == null )
         {
             map.put("message","failed");
@@ -28,19 +57,65 @@ public class AccountController {
         {
             map.put("message","success");
             return new ResponseEntity<>(map,HttpStatus.OK);
+=======
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+>>>>>>> Stashed changes
 
+            map.put("message","Error: Username is already taken!");
+            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+    }
+
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+            map.put("message","Error: Email is already in use!");
+            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
+<<<<<<< Updated upstream
         else
         {
             map.put("message","failed");
             return new ResponseEntity<>(map,HttpStatus.OK);
+=======
+        //Create Stripe test Customer
+        String customerID=null;
+        try {
+            customerID= stripeService.addCustomer(signUpRequest);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        } catch (InvalidRequestException e) {
+            e.printStackTrace();
+        } catch (ApiConnectionException e) {
+            e.printStackTrace();
+        } catch (CardException e) {
+            e.printStackTrace();
+        } catch (ApiException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+>>>>>>> Stashed changes
         }
+        // Create new user's account
+        User user = new User(
+                signUpRequest.getUsername(),
+                signUpRequest.getFullname(),
+                signUpRequest.getEmail(),
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getPhone_number(),
+                signUpRequest.getDate_of_birth(),
+                0.0,
+                "user",
+                customerID
+                );
+        userRepository.save(user);
+
+        map.put("message","User Registered Successfully");
+        return new ResponseEntity<>(map,HttpStatus.OK);
     }
 
-    @PostMapping("/Login")
-    public ResponseEntity<HashMap<String, String>> login(@RequestBody User user)
+    @PostMapping("auth/Login")
+    public ResponseEntity<HashMap<String, String>> login(@Valid @RequestBody LoginRequest loginRequest)
     {
         HashMap<String, String> map = new HashMap<>();
+<<<<<<< Updated upstream
         if(user.getEmail() == null || user.getPassword() == null)
         {
             map.put("message","failed");
@@ -49,12 +124,29 @@ public class AccountController {
         else if(userService.login(user.getEmail(),user.getPassword()))
         {
             map.put("message","success");
+=======
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword()));
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = jwtUtils.generateJwtToken(authentication);
+
+            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+            map.put("message","Success");
+            map.put("Authorization",jwt);
+>>>>>>> Stashed changes
             return new ResponseEntity<>(map,HttpStatus.OK);
         }
-        else
-        {
+        catch (BadCredentialsException e){
             map.put("message","failed");
+<<<<<<< Updated upstream
             return new ResponseEntity<>(map,HttpStatus.OK);
+=======
+            map.put("Authorization",null);
+            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+>>>>>>> Stashed changes
         }
     }
 }
