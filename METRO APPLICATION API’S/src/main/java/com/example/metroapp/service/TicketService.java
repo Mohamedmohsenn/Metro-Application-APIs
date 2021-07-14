@@ -8,6 +8,11 @@ import com.example.metroapp.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< Updated upstream
+=======
+import java.util.HashMap;
+import java.util.List;
+>>>>>>> Stashed changes
 import java.util.Map;
 import java.util.Set;
 
@@ -42,7 +47,11 @@ public class TicketService implements ITicketService {
     }
 
     @Override
+<<<<<<< Updated upstream
     public Boolean buyTicketUsingWallet(Integer userID, Integer price)
+=======
+    public Boolean buyTicket(Integer userID, Integer price)
+>>>>>>> Stashed changes
     {
         User user = userRepo.findById(userID).get();
         if(user.getBalance() < price)
