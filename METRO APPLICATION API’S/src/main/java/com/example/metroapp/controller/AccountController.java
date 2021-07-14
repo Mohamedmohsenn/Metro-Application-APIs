@@ -47,19 +47,7 @@ public class AccountController {
     public ResponseEntity<HashMap<String, String>> signUp(@Valid @RequestBody SignUpRequest signUpRequest)
     {
         HashMap<String, String> map = new HashMap<>();
-<<<<<<< Updated upstream
-        if(user.getEmail() == null || user.getPassword() == null || user.getUser_name() == null || user.getPhone_number() == null )
-        {
-            map.put("message","failed");
-            return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
-        }
-        else if(userService.SignUp(user))
-        {
-            map.put("message","success");
-            return new ResponseEntity<>(map,HttpStatus.OK);
-=======
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
->>>>>>> Stashed changes
 
             map.put("message","Error: Username is already taken!");
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
@@ -69,12 +57,6 @@ public class AccountController {
             map.put("message","Error: Email is already in use!");
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
-<<<<<<< Updated upstream
-        else
-        {
-            map.put("message","failed");
-            return new ResponseEntity<>(map,HttpStatus.OK);
-=======
         //Create Stripe test Customer
         String customerID=null;
         try {
@@ -91,7 +73,6 @@ public class AccountController {
             e.printStackTrace();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
->>>>>>> Stashed changes
         }
         // Create new user's account
         User user = new User(
@@ -115,16 +96,6 @@ public class AccountController {
     public ResponseEntity<HashMap<String, String>> login(@Valid @RequestBody LoginRequest loginRequest)
     {
         HashMap<String, String> map = new HashMap<>();
-<<<<<<< Updated upstream
-        if(user.getEmail() == null || user.getPassword() == null)
-        {
-            map.put("message","failed");
-            return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
-        }
-        else if(userService.login(user.getEmail(),user.getPassword()))
-        {
-            map.put("message","success");
-=======
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword()));
@@ -136,17 +107,12 @@ public class AccountController {
 
             map.put("message","Success");
             map.put("Authorization",jwt);
->>>>>>> Stashed changes
             return new ResponseEntity<>(map,HttpStatus.OK);
         }
         catch (BadCredentialsException e){
             map.put("message","failed");
-<<<<<<< Updated upstream
-            return new ResponseEntity<>(map,HttpStatus.OK);
-=======
             map.put("Authorization",null);
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
->>>>>>> Stashed changes
         }
     }
 }

@@ -8,9 +8,5 @@ import java.util.Set;
 public interface ITicketService {
     public Set<Ticket> getUserTickets(Integer userID);
     public Integer getTicketPrice(String source,String destination);
-<<<<<<< Updated upstream
-    public Boolean buyTicketUsingWallet(Integer userID, Integer price);
-=======
     public Boolean buyTicket(Integer userID, Integer price);
->>>>>>> Stashed changes
 }

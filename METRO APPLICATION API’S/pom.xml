@@ -83,16 +83,6 @@
             <artifactId>jgrapht-core</artifactId>
             <version>1.5.1</version>
         </dependency>
-<<<<<<< Updated upstream
-
-        <dependency>
-            <groupId>com.stripe</groupId>
-            <artifactId>stripe-java</artifactId>
-            <version>20.63.1</version>
-        </dependency>
-
-=======
->>>>>>> Stashed changes
     </dependencies>
 
     <build>
