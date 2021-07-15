@@ -92,8 +92,6 @@ INSERT INTO `station_line` VALUES (8,1),(11,1),(32,1),(33,1),(34,1),(35,1),(36,1
 UNLOCK TABLES;
 
 --
-<<<<<<< Updated upstream:SQL script.sql
-=======
 -- Table structure for table `stripe_charge`
 --
 
@@ -140,7 +138,6 @@ LOCK TABLES `stripe_charge` WRITE;
 UNLOCK TABLES;
 
 --
->>>>>>> Stashed changes:Data Base Script.sql
 -- Table structure for table `ticket`
 --
 
@@ -156,12 +153,7 @@ CREATE TABLE `ticket` (
   PRIMARY KEY (`id`),
   KEY `fk_userID_idx` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-<<<<<<< Updated upstream:SQL script.sql
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
->>>>>>> Stashed changes:Data Base Script.sql
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ticket`
@@ -169,11 +161,9 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-<<<<<<< Updated upstream:SQL script.sql
 INSERT INTO `ticket` VALUES (1,5,9,1,1);
-=======
+
 INSERT INTO `ticket` VALUES (3,5,9,1,9);
->>>>>>> Stashed changes:Data Base Script.sql
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,16 +176,6 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `user_id` int NOT NULL AUTO_INCREMENT,
-<<<<<<< Updated upstream:SQL script.sql
-  `user_name` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `phone_number` varchar(45) DEFAULT NULL,
-  `date_of_birth` date DEFAULT NULL,
-  `balance` int DEFAULT '0',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-=======
   `username` varchar(45) NOT NULL,
   `fullname` varchar(255) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
@@ -211,8 +191,6 @@ CREATE TABLE `user` (
   UNIQUE KEY `phone_number_UNIQUE` (`phone_number`),
   UNIQUE KEY `stripe_id_UNIQUE` (`stripe_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
->>>>>>> Stashed changes:Data Base Script.sql
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
@@ -220,11 +198,8 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-<<<<<<< Updated upstream:SQL script.sql
 INSERT INTO `user` VALUES (1,'mohsen','midomohsen11@gmail.com','1234',NULL,NULL,0),(2,'bakr','mbakr@gmail.com','1234',NULL,NULL,5),(3,'mido','msameh@gmail.com','1234',NULL,NULL,0),(4,'sameh','msameh99@gmail.com','1234',NULL,NULL,0);
-=======
 INSERT INTO `user` VALUES (9,'Ahmed','Ahmed Ibrahim','Ahmed@gmail.com','$2a$10$soOgAzKo0YPziSHQKYNFDudzS.n5oInnNgC8kb4tZLrWbWjyC3/Am','0115','1999-02-02',57,'user','cus_JqrwgqkQYJpLWq'),(10,'Mohsen','Mohamed Mohsen','Mohsen@gmail.com','$2a$10$jFpoZOhZpbBnXDOZwPC4ROJVv3DVe/MlIPE/HbhgLUeixKUce2xFK','0113','1999-02-04',0,'user','cus_JqrzkDdu1rl4Zd');
->>>>>>> Stashed changes:Data Base Script.sql
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -237,8 +212,45 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< Updated upstream:SQL script.sql
--- Dump completed on 2021-07-11 21:39:08
-=======
--- Dump completed on 2021-07-14 18:08:28
->>>>>>> Stashed changes:Data Base Script.sql
+CREATE TABLE `subscription` (
+  `subscription_id` int(11) NOT NULL AUTO_INCREMENT,
+  `trips_num` int(11) DEFAULT NULL,
+  `station_num` int(11) DEFAULT NULL,
+  `months_num` int(11) DEFAULT NULL,
+  `price` int(11) NOT NULL,
+  PRIMARY KEY (`subscription_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+;
+INSERT INTO `subscription` (`subscription_id`,`trips_num`,`station_num`,`months_num`,`price`) VALUES (1,120,9,3,250);
+INSERT INTO `subscription` (`subscription_id`,`trips_num`,`station_num`,`months_num`,`price`) VALUES (2,120,16,3,380);
+INSERT INTO `subscription` (`subscription_id`,`trips_num`,`station_num`,`months_num`,`price`) VALUES (3,120,36,3,480);
+INSERT INTO `subscription` (`subscription_id`,`trips_num`,`station_num`,`months_num`,`price`) VALUES (4,120,9,1,120);
+INSERT INTO `subscription` (`subscription_id`,`trips_num`,`station_num`,`months_num`,`price`) VALUES (5,120,16,1,180);
+
+CREATE TABLE `normalsubscription` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `full_name` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `national_id` varchar(45) NOT NULL,
+  `country` varchar(45) NOT NULL,
+  `city` varchar(45) NOT NULL,
+  `source` varchar(45) NOT NULL,
+  `target` varchar(45) NOT NULL,
+  `subscription_id` int(11) NOT NULL,
+  `trips_num` int(11) NOT NULL,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id_idx` (`user_id`),
+  KEY `subscription_id` (`subscription_id`),
+  CONSTRAINT `normalsubscription_ibfk_1` FOREIGN KEY (`subscription_id`) REFERENCES `subscription` (`subscription_id`),
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (1,1,'Mohamed','Mohamed@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,119,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (2,2,'Ahmed','Ahmed@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,3,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (3,3,'Mahmoud','Mahmoud@gmail','02121212','21313213','Egypt','giza','bohos','shohada',2,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (4,4,'Wael','Wael@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (5,5,'Gamal','Gamal@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,1,'2021-07-13 22:00:00','2021-10-13 22:00:00');
