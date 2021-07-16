@@ -7,6 +7,7 @@ import java.util.Properties;
 
 public class SpringBootStripeProperties
 {
+    private ApiKey
     public static Properties springBootStripeData = loadProperties("D:/SpringBootStripeProject-master/SpringBootStripeProject-master/src/main/resources/application.properties");
     private static Properties loadProperties(String filePath) {
         Properties properties = new Properties();

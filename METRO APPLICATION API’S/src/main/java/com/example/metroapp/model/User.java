@@ -18,18 +18,6 @@ public class User {
     private String password;
     private String phone_number;
     private Date date_of_birth;
-<<<<<<< Updated upstream
-    private Integer balance;
-    private Set<Ticket> tickets = new HashSet<>();
-
-
-    public User(){
-    }
-
-    public User(Integer user_id, String user_name, String email, String password, String phone_number, Date date_of_birth, Integer balance) {
-        this.user_id = user_id;
-        this.user_name = user_name;
-=======
     private Double balance;
     private Set<Ticket> tickets = new HashSet<>();
     private String role;
@@ -53,7 +41,6 @@ public class User {
                 Date date_of_birth, Double balance, String role,String stripe_id) {
         this.username = user_name;
         this.fullname = fullname;
->>>>>>> Stashed changes
         this.email = email;
         this.password = password;
         this.phone_number = phone_number;
@@ -120,11 +107,7 @@ public class User {
         this.date_of_birth = date_of_birth;
     }
 
-<<<<<<< Updated upstream
-    public Integer getBalance() {
-=======
     public Double getBalance() {
->>>>>>> Stashed changes
         return balance;
     }
 
@@ -132,8 +115,6 @@ public class User {
         this.balance = balance;
     }
 
-<<<<<<< Updated upstream
-=======
     public String getRole() {
         return role;
     }
@@ -148,7 +129,6 @@ public class User {
     public void setStripe_id(String stripe_id) {
         this.stripe_id = stripe_id;
     }
->>>>>>> Stashed changes
 
     @OneToMany(mappedBy="user")
     @JsonManagedReference

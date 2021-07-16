@@ -1,3 +1,4 @@
+/*
 package com.example.metroapp.service;
 
 import com.example.metroapp.interfaces.INormalSubscriptionService;
@@ -103,3 +104,4 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
         return false;
     }
 }
+*/

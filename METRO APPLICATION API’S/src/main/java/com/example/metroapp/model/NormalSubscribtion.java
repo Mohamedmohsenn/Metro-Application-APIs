@@ -1,4 +1,5 @@
-package com.example.metroapp.model;
+
+/*package com.example.metroapp.model;
 
 import com.example.metroapp.repository.SubscriptionRepo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -176,3 +177,4 @@ public class NormalSubscribtion {
         this.end_date = end_date;
     }
 }
+*/

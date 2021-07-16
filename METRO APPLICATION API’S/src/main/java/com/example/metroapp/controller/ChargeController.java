@@ -1,20 +1,6 @@
 
 package com.example.metroapp.controller;
 
-<<<<<<< Updated upstream
-import java.util.List;
-
-import com.example.metroapp.interfaces.IPaymentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-=======
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,7 +17,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
->>>>>>> Stashed changes
 
 import com.example.metroapp.model.StripeCharge;
 import com.example.metroapp.service.StationService;
@@ -48,16 +33,6 @@ public class ChargeController {
     @Autowired
     private IPaymentService chargeService;
 
-<<<<<<< Updated upstream
-    @PostMapping(value="/v1/charges")
-    public String createCharge(@RequestBody StripeCharge charge) throws AuthenticationException, InvalidRequestException, CardException, ApiConnectionException, ApiException {
-        return chargeService.addCharge(charge);
-    }
-
-    @GetMapping(value="/v1/charges/{cid}")
-    public String retrieveCharge(@PathVariable String cid) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException {
-        return chargeService.retrieveCharge(cid);
-=======
 
     @Autowired
     JwtUtils jwtUtils;
@@ -83,6 +58,5 @@ public class ChargeController {
             map.put("message","Error: Error with Payment method");
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
->>>>>>> Stashed changes
     }
 }

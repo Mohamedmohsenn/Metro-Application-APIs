@@ -1,5 +1,5 @@
 package com.example.metroapp.interfaces;
-
+/*
 import com.example.metroapp.model.Subscribtion;
 
 import java.util.List;
@@ -10,3 +10,4 @@ public interface ISubscriptionService {
    public boolean updateSubscripe (int id,int price);
    public boolean deleteSubscripe (int id);
 }
+*/
