@@ -37,10 +37,12 @@ public class TicketController {
     @GetMapping("api/GetUserTickets")
     public ResponseEntity<?> getUserTickets(@RequestHeader String Authorization)
     {
+
         String Header[] = Authorization.split(" ");
         String username = jwtUtils.getUserNameFromJwtToken(Header[1]);
         UserDetailsImpl userDetails = userDetailsService.loadUserByUsername(username);
         int userID=userDetails.getId();
+
 
         Map<String, Set<Ticket>> mp = new HashMap<>();
         mp.put("tickets_data",ticketService.getUserTickets(userID));

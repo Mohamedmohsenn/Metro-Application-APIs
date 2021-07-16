@@ -1,5 +1,5 @@
 package com.example.metroapp.interfaces;
-
+/*
 import com.example.metroapp.model.NormalSubscribtion;
 import com.example.metroapp.model.Station;
 import com.example.metroapp.model.User;
@@ -10,3 +10,4 @@ public interface INormalSubscriptionService {
     boolean useSubscription(User user , String source, String destination);
 
 }
+*/
