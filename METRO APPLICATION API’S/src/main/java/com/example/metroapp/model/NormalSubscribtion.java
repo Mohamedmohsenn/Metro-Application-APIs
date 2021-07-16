@@ -1,5 +1,5 @@
 
-/*package com.example.metroapp.model;
+package com.example.metroapp.model;
 
 import com.example.metroapp.repository.SubscriptionRepo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -45,9 +45,8 @@ public class NormalSubscribtion {
 
     }
 
-    public NormalSubscribtion(Integer id,User user,String full_name, String email, String phone, String national_id, String country,String city, String source, String target,Subscribtion subscription) {
+    public NormalSubscribtion(Integer id,String full_name, String email, String phone, String national_id, String country,String city, String source, String target,Subscribtion subscription) {
         this.id=id;
-        this.user=user;
         this.full_name = full_name;
         this.email = email;
         this.phone = phone;
@@ -177,4 +176,3 @@ public class NormalSubscribtion {
         this.end_date = end_date;
     }
 }
-*/
