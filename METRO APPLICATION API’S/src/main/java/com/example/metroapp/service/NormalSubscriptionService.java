@@ -1,4 +1,4 @@
-/*
+
 package com.example.metroapp.service;
 
 import com.example.metroapp.interfaces.INormalSubscriptionService;
@@ -30,16 +30,16 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
     SubscriptionRepo subscriptionRepo;
 
     @Override
-    public boolean addSubscripe (NormalSubscribtion User_data)
+    public boolean addSubscripe (NormalSubscribtion User_data,int userID)
     {
         List<NormalSubscribtion>NormalSubscribtions= normalSubscriptionRepo.findAll();
-        User user=userRepo.findById(User_data.getUser().getUser_id()).get();
+        User user=userRepo.findById(userID).get();
         Subscribtion subscribtion=subscriptionRepo.findById(User_data.getSubscription().getSubscription_id()).get();
         Map<String,Boolean> getTripPath = tripService.getTripPath(User_data.getSource(),User_data.getTarget());
         System.out.print(User_data.getSource()+" "+User_data.getTarget());
         for(NormalSubscribtion subscription : NormalSubscribtions)
         {
-            if(subscription.getUser().getUser_id()==User_data.getUser().getUser_id())
+            if(subscription.getUser().getUser_id()==userID)
             {
                 return false;
             }
@@ -48,6 +48,7 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
             user.setBalance(user.getBalance()-subscribtion.getPrice());
             User_data.setStart_date(Date.valueOf(LocalDate.now()));
             User_data.setEnd_date(Date.valueOf(LocalDate.now().plusMonths(subscribtion.getmonths_num())));
+            User_data.setUser(user);
             normalSubscriptionRepo.save(User_data);
             user.setNormalSubscribtion(User_data);
             userRepo.save(user);
@@ -81,7 +82,8 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
     }
 
     @Override
-    public boolean useSubscription(User user , String source, String destination ) {
+    public boolean useSubscription(Integer user_id , String source, String destination ) {
+        User user=userRepo.getById(user_id);
         NormalSubscribtion NormalSubscribtions = normalSubscriptionRepo.findByUser(user);
         Map<String,Boolean> getTripPath = tripService.getTripPath(source,destination);
         if(NormalSubscribtions!=null) {
@@ -92,9 +94,9 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
                 previous_trips=0;
             }
             int stations = NormalSubscribtions.getSubscription().getstation_num();
-            Date startdate = (Date) NormalSubscribtions.getStart_date();
-            Date enddate = (Date) NormalSubscribtions.getEnd_date();
-            if(trips>previous_trips && getTripPath.size()<stations && startdate.before(enddate))
+            long startdate = NormalSubscribtions.getStart_date().getTime();
+            long enddate = NormalSubscribtions.getEnd_date().getTime();
+            if(trips>previous_trips && getTripPath.size()<stations && startdate<enddate)
             {
                 NormalSubscribtions.setTrips_num(previous_trips+1);
                 normalSubscriptionRepo.save(NormalSubscribtions);
@@ -104,4 +106,3 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
         return false;
     }
 }
-*/

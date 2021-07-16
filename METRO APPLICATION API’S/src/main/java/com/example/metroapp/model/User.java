@@ -20,6 +20,7 @@ public class User {
     private Date date_of_birth;
     private Double balance;
     private Set<Ticket> tickets = new HashSet<>();
+    private NormalSubscribtion normalSubscribtion ;
     private String role;
     private String stripe_id;
 
@@ -138,6 +139,15 @@ public class User {
 
     public void setTickets(Set<Ticket> InputTickets) {
         tickets.addAll(InputTickets);
+    }
+
+    @OneToOne(mappedBy="user")
+    public NormalSubscribtion getNormalSubscribtion() {
+        return normalSubscribtion;
+    }
+
+    public void setNormalSubscribtion(NormalSubscribtion normalSubscribtion) {
+        this.normalSubscribtion = normalSubscribtion;
     }
 }
 

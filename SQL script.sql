@@ -198,7 +198,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'mohsen','midomohsen11@gmail.com','1234',NULL,NULL,0),(2,'bakr','mbakr@gmail.com','1234',NULL,NULL,5),(3,'mido','msameh@gmail.com','1234',NULL,NULL,0),(4,'sameh','msameh99@gmail.com','1234',NULL,NULL,0);
+/*INSERT INTO `user` VALUES (1,'mohsen','midomohsen11@gmail.com','1234',NULL,NULL,0),(2,'bakr','mbakr@gmail.com','1234',NULL,NULL,5),(3,'mido','msameh@gmail.com','1234',NULL,NULL,0),(4,'sameh','msameh99@gmail.com','1234',NULL,NULL,0);*/
 INSERT INTO `user` VALUES (9,'Ahmed','Ahmed Ibrahim','Ahmed@gmail.com','$2a$10$soOgAzKo0YPziSHQKYNFDudzS.n5oInnNgC8kb4tZLrWbWjyC3/Am','0115','1999-02-02',57,'user','cus_JqrwgqkQYJpLWq'),(10,'Mohsen','Mohamed Mohsen','Mohsen@gmail.com','$2a$10$jFpoZOhZpbBnXDOZwPC4ROJVv3DVe/MlIPE/HbhgLUeixKUce2xFK','0113','1999-02-04',0,'user','cus_JqrzkDdu1rl4Zd');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -250,7 +250,4 @@ CREATE TABLE `normalsubscription` (
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (1,1,'Mohamed','Mohamed@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,119,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (2,2,'Ahmed','Ahmed@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,3,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (3,3,'Mahmoud','Mahmoud@gmail','02121212','21313213','Egypt','giza','bohos','shohada',2,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (4,4,'Wael','Wael@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (5,5,'Gamal','Gamal@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,1,'2021-07-13 22:00:00','2021-10-13 22:00:00');
+INSERT INTO `normalsubscription` (`id`,`user_id`,`full_name`,`email`,`phone`,`national_id`,`country`,`city`,`source`,`target`,`subscription_id`,`trips_num`,`start_date`,`end_date`) VALUES (2,2,'Gamal','Gamal@gmail','02121212','21313213','Egypt','giza','bohos','shohada',1,1,'2021-07-13 22:00:00','2021-10-13 22:00:00');

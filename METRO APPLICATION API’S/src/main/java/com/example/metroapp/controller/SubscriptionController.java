@@ -1,5 +1,5 @@
 package com.example.metroapp.controller;
-/*
+
 
 import com.example.metroapp.interfaces.IStationService;
 import com.example.metroapp.interfaces.ISubscriptionService;
@@ -68,4 +68,3 @@ public class SubscriptionController {
     }
 
 }
-*/

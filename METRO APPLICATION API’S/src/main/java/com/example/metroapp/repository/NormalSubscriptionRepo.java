@@ -1,5 +1,5 @@
 package com.example.metroapp.repository;
-/*
+
 import com.example.metroapp.model.NormalSubscribtion;
 import com.example.metroapp.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +10,3 @@ public interface NormalSubscriptionRepo extends JpaRepository<NormalSubscribtion
     NormalSubscribtion findByUser(User user);
 
 }
-*/

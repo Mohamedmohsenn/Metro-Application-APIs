@@ -1,4 +1,4 @@
-/*
+
 package com.example.metroapp.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -85,4 +85,3 @@ public class Subscribtion {
         this.normalSubscribtions = normalSubscribtions;
     }
 }
-*/
