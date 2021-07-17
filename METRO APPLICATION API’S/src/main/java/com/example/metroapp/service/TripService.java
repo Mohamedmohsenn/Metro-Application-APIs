@@ -2,30 +2,44 @@ package com.example.metroapp.service;
 
 
 import com.example.metroapp.interfaces.ITripService;
+import com.example.metroapp.model.Line;
+import com.example.metroapp.model.Station;
+import com.example.metroapp.repository.LineRepo;
+import com.example.metroapp.repository.StationRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class TripService implements ITripService {
-    private String[] line1 = {"marg", "ezbt elnakhl", "ain shams", "al matareya", "helmyt elzayton", "hadayek el zayton","sray el koba", "hamamat el koba", "kobry el koba", "manshiet el sadr", "eldemerdash", "ghamra","shohada","ahmed oraby", "gamal abdelnaser","sadat","sad zaghloul","elsayeda zaynab","elmalek el saleh", "mar girgis","zahraa masr el kadima", "dar el salam", "hadayek el maadi", "maadi", "sakanat el maadi", "tora el balad","kozzika", "tora el asmant", "el maasara", "hadayek helwan", "wadi-hof", "gamet helwan", "ain helwan","helwan"};
-    private String[] line2 = {"moneb", "sakyet meky", "om elmasryeen", "giza", "faisal", "gamet el kahera","bohos", "dokky", "opera", "sadat", "mohamed nageb", "attaba", "shohada","msara","rod el farag", "sant treza", "khalafawy", "mazallat", "kolyt el zeraa", "shobra el khema"};
-    private String[] line3 = {"attaba","bab el shareya", "elgesh", "abdo basha", "abasya", "ard el maared", "stad el kahera","kolyt el banat", "elahram", "haron el rashed", "heliopolis", "alf maskan", "nady el shams", "el nozha", "hesham barakat","qebaa"};
+
+    @Autowired
+    StationRepo stationRepo;
+
+    @Autowired
+    LineRepo lineRepo;
+
     private Map<String, Integer> lines ;
     private Map<Integer,String> linesOpposite;
+    List<Station> stations;
     private int vertexSize;
     private int pred[];
     private List<ArrayList<Integer>> graph;
 
     private void initializeAndBuildGraph()
     {
+        stations = stationRepo.findAll();
         lines = new HashMap<>();
+        for (int i = 0 ; i < stations.size() ; i++) {
+            lines.put(stations.get(i).getName(), i);
+        }
+        vertexSize = stations.size();
         linesOpposite = new HashMap<>();
-        vertexSize = line1.length+line2.length+line3.length - 3;
         pred = new int[vertexSize];
         graph = new ArrayList<>(vertexSize);
         for (int i = 0; i < vertexSize; i++) {
-            graph.add(new ArrayList<Integer>());
+            graph.add(new ArrayList<>());
         }
         buildGraph();
         for(Map.Entry<String,Integer> mp : lines.entrySet()){
@@ -40,36 +54,11 @@ public class TripService implements ITripService {
     }
 
     private void buildGraph() {
-        int i = 0;
-        for (; i < line1.length; i++) {
-            lines.put(line1[i], i);
-        }
-        for (int m = 0; m < line2.length; m++) {
-            if (!lines.containsKey(line2[m])) {
-                lines.put(line2[m], i);
-                i++;
-            }
-        }
-        for (int m = 0; m < line3.length; m++) {
-            if (!lines.containsKey(line3[m])) {
-                lines.put(line3[m], i);
-                i++;
-            }
-        }
-
-        for (int m = 0; m < line1.length - 1; m++) {
-            addEdge(lines.get(line1[m]), lines.get(line1[m + 1]));
-            addEdge(lines.get(line1[m + 1]), lines.get(line1[m]));
-        }
-
-        for (int m = 0; m < line2.length - 1; m++) {
-            addEdge(lines.get(line2[m]), lines.get(line2[m + 1]));
-            addEdge(lines.get(line2[m + 1]), lines.get(line2[m]));
-        }
-
-        for (int m = 0; m < line3.length - 1; m++) {
-            addEdge(lines.get(line3[m]), lines.get(line3[m + 1]));
-            addEdge(lines.get(line3[m + 1]), lines.get(line3[m]));
+        for (int m = 0; m < stations.size() ; m++)
+        {
+            List<Station> after = stations.get(m).getAfter();
+            for(int j = 0 ; j < after.size() ; j++)
+                addEdge(lines.get(stations.get(m).getName()), lines.get(after.get(j).getName()));
         }
     }
 
@@ -77,7 +66,7 @@ public class TripService implements ITripService {
     {
         initializeAndBuildGraph();
         boolean visited[] = new boolean[vertexSize];
-        LinkedList<Integer> queue = new LinkedList<Integer>();
+        LinkedList<Integer> queue = new LinkedList<>();
 
         for (int i = 0; i < vertexSize; i++) {
             visited[i] = false;
@@ -109,6 +98,34 @@ public class TripService implements ITripService {
         }
     }
 
+    private boolean isSameLineStations(String station1,String station2,String station3)
+    {
+        List<Line> stationOneLines = stationRepo.findByName(station1).getLines();
+        List<Line> stationTwoLines = stationRepo.findByName(station2).getLines();
+        List<Line> stationThreeLines = stationRepo.findByName(station3).getLines();
+        List<Line> allLines = lineRepo.findAll();
+        for(int i = 0 ; i < allLines.size() ; i++)
+        {
+            if(stationOneLines.contains(allLines.get(i)) && stationTwoLines.contains(allLines.get(i)) && stationThreeLines.contains(allLines.get(i)))
+                return true;
+        }
+        return false;
+    }
+
+    private Map<String,Boolean> SetChangableStations(List<String> path)
+    {
+        Map<String,Boolean> station = new LinkedHashMap<>();
+
+        for(int i = 0 ; i < path.size() ; i++)
+        {
+            if( i == 0 || i == path.size()-1 || isSameLineStations(path.get(i-1),path.get(i),path.get(i+1)))
+                 station.put(path.get(i),false);
+            else
+                station.put(path.get(i),true);
+        }
+        return station;
+    }
+
     @Override
     public Map<String,Boolean> getTripPath(String source, String destination)
     {
@@ -121,35 +138,7 @@ public class TripService implements ITripService {
             i = pred[i];
         }
         Collections.reverse(path);
-        Map<String,Boolean> station = new LinkedHashMap<>();
-        for(int i = 0 ; i < path.size() ; i++)
-        {
-            if(path.get(i).equals("shohada"))
-            {
-                if((i == 0 || i == path.size()-1) || (path.get(i-1).equals("ghamra") && path.get(i+1).equals("ahmed oraby")) ||  (path.get(i-1).equals("ahmed oraby") && path.get(i+1).equals("ghamra")) || (path.get(i-1).equals("attaba") && path.get(i+1).equals("msara")) || (path.get(i-1).equals("msara") && path.get(i+1).equals("attaba")))
-                    station.put("shohada",false);
-                else
-                    station.put("shohada",true);
-            }
-            else if(path.get(i).equals("sadat"))
-            {
-                if( (i == 0 || i == path.size()-1) || (path.get(i-1).equals("opera") && path.get(i+1).equals("mohamed nageb")) || (path.get(i-1).equals("mohamed nageb") && path.get(i+1).equals("opera")) || (path.get(i-1).equals("sad zaghloul") && path.get(i+1).equals("gamal abdelnaser")) || (path.get(i-1).equals("gamal abdelnaser") && path.get(i+1).equals("sad zaghloul")))
-                    station.put("sadat",false);
-                else
-                    station.put("sadat",true);
-
-            }
-            else if(path.get(i).equals("attaba"))
-            {
-                if( (i == 0 || i == path.size()-1) || (path.get(i-1).equals("mohamed nageb") && path.get(i+1).equals("shohada")) || (path.get(i-1).equals("shohada") && path.get(i+1).equals("mohamed nageb")))
-                    station.put("attaba",false);
-                else
-                    station.put("attaba",true);
-            }
-            else
-                station.put(path.get(i),false);
-        }
-        return station;
+        return SetChangableStations(path);
     }
 
     @Override
@@ -159,7 +148,7 @@ public class TripService implements ITripService {
         int time = 0;
         for(Map.Entry<String,Boolean> mp : stations.entrySet())
         {
-            if(mp.getValue() == true)
+            if(mp.getValue())
                 time+=7;
             else
                 time+=2;
