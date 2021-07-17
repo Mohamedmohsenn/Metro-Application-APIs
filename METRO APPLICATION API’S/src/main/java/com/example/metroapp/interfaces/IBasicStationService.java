@@ -9,5 +9,6 @@ public interface IBasicStationService {
     public boolean addStation(String[] prevStation,Station station,String[] afterStation);
     public boolean addStation(String[] prevStation,Station station);
     public boolean addStation(Station station,String[] afterStation);
+    public boolean addStation(Station station);
     public boolean updateStation(Integer id,Station newStation);
 }

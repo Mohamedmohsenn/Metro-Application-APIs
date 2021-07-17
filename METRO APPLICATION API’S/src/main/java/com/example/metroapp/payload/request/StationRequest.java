@@ -2,7 +2,7 @@ package com.example.metroapp.payload.request;
 
 import com.example.metroapp.model.Station;
 
-public class MiddleStationRequest {
+public class StationRequest {
     private String[] prevStation ;
     private Station station;
     private String[] afterStation ;

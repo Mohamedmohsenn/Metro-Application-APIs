@@ -198,6 +198,25 @@ public class BasicStationService implements IBasicStationService {
         return true;
     }
 
+    // add to new line doesnt contain any stations
+    @Override
+    public boolean addStation(Station station)
+    {
+        Station newStation = stationRepo.findByName(station.getName());
+        if(newStation != null) {
+            return false;
+        }
+        for(Line line : station.getLines())
+        {
+            Line newLine = lineRepo.getById(line.getId());
+            if(newLine.getStations().size() > 0)
+                return false;
+            line.getStations().add(station);
+        }
+        stationRepo.save(station);
+        return true;
+    }
+
     @Override
     public boolean updateStation(Integer id,Station newStation)
     {
@@ -215,4 +234,5 @@ public class BasicStationService implements IBasicStationService {
         stationRepo.save(station);
         return true;
     }
+
 }
