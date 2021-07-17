@@ -51,7 +51,6 @@ public class User {
         this.stripe_id=stripe_id;
     }
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getUser_id() {
