@@ -1,7 +1,7 @@
 package com.example.metroapp.service;
-/*
+
 import com.example.metroapp.interfaces.ISubscriptionService;
-//import com.example.metroapp.model.NormalSubscribtion;
+import com.example.metroapp.model.NormalSubscribtion;
 import com.example.metroapp.model.Subscribtion;
 import com.example.metroapp.repository.SubscriptionRepo;
 import com.example.metroapp.repository.UserRepo;
@@ -63,4 +63,3 @@ public class SubscriptionService implements ISubscriptionService {
         return false;
     }
 }
-*/

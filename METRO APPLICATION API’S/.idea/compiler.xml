@@ -9,7 +9,7 @@
         <module name="metroapp" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="metroapp" target="11" />
     </bytecodeTargetLevel>
   </component>

@@ -5,20 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19892fe4-9b2d-44b5-896f-4987eb9dc5eb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_2_2_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/payload/MachineRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36c32cc6-86d9-4ecd-b0b6-4787ab80f9c6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36c32cc6-86d9-4ecd-b0b6-4787ab80f9c6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/MetroappApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/MetroappApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ITicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ITicketService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TicketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metroapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/metroapp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/MachineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/MachineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/IMachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/IMachineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/properties/SpringBootStripeProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/properties/SpringBootStripeProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/MachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/MachineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/SubscriptionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/metroapp.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/MetroappApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/MetroappApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/ChargeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/ChargeController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/StationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/StationController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/TicketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/TicketController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/TripController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/controller/TripController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/IAccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/IAccountService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/IPaymentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/IPaymentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/IStationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/IStationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/ITicketService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/ITicketService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/ITripService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/interfaces/ITripService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/Line.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/Station.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/Station.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/StripeCharge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/StripeCharge.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/Ticket.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/properties/SpringBootStripeProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/properties/SpringBootStripeProperties.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/repository/LineRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/repository/LineRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/repository/StationRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/repository/StationRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/repository/TicketRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/repository/TicketRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/repository/UserRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/repository/UserRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/AccountService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/StationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/StationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/StripeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/StripeService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/TicketService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/TicketService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/TripService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/metroapp/service/TripService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/metroapp/MetroappApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/metroapp/MetroappApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,9 +100,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunManager">
     <configuration name="MetroappApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -76,6 +121,9 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="19892fe4-9b2d-44b5-896f-4987eb9dc5eb" name="Default Changelist" comment="" />
@@ -92,6 +140,8 @@
       <workItem from="1625959050039" duration="1784000" />
       <workItem from="1626004604947" duration="13605000" />
       <workItem from="1626086025328" duration="5108000" />
+      <workItem from="1626522498663" duration="7073000" />
+      <workItem from="1626534646846" duration="2136000" />
     </task>
     <servers />
   </component>
