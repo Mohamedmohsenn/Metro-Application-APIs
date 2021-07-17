@@ -3,6 +3,7 @@ package com.example.metroapp.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,18 +12,17 @@ import java.util.Set;
 @Table(name="line")
 public class Line {
     Integer id;
+    List<Station> stations = new ArrayList<>();
 
     @ManyToMany(mappedBy = "lines")
     @JsonBackReference
-    public Set<Station> getStations() {
+    public List<Station> getStations() {
         return stations;
     }
 
-    public void setStations(Set<Station> stations) {
+    public void setStations(List<Station> stations) {
         this.stations = stations;
     }
-
-    Set<Station> stations = new HashSet<>();
 
     @Id
     public Integer getId() {
