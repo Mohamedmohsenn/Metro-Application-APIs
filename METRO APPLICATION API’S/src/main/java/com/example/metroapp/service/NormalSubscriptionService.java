@@ -35,6 +35,8 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
     {
         List<NormalSubscribtion>NormalSubscribtions= normalSubscriptionRepo.findAll();
         User user=userRepo.findById(userID).get();
+        User_data.setSubscription_id(15);
+        System.out.print(User_data.getSource()+User_data.getTarget()+User_data.getPeriod());
         Subscription subscription1 =  normalSubscriptionService.GetSubscriptionType(User_data.getSource(),User_data.getTarget(),User_data.getPeriod());
         User_data.setSubscription(subscription1);
         Subscription subscribtion=subscriptionRepo.findById(User_data.getSubscription().getSubscription_id()).get();
@@ -140,6 +142,20 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
                 return  subscription.getPrice();
             }
         }
+        return null;
+    }
+
+    @Override
+    public NormalSubscribtion CheckSubscripe (Integer user_id)
+    {
+        //List<NormalSubscribtion>NormalSubscribtions= normalSubscriptionRepo.findAll();
+        User user=userRepo.findById(user_id).get();
+
+            if(normalSubscriptionRepo.findByUser(user)!=null)
+            {
+                    return user.getNormalSubscribtion() ;
+            }
+
         return null;
     }
 }

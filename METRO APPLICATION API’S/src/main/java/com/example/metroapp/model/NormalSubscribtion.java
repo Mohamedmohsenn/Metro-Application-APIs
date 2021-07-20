@@ -41,8 +41,7 @@ public class NormalSubscribtion {
 
     }
 
-    public NormalSubscribtion(Integer id,String full_name, String email, String phone, String national_id, String country,String city, String source, String target,int period) {
-        this.id=id;
+    public NormalSubscribtion(String full_name, String email, String phone, String national_id, String country,String city, String source, String target,int period) {
         this.full_name = full_name;
         this.email = email;
         this.phone = phone;
@@ -51,8 +50,8 @@ public class NormalSubscribtion {
         this.city = city;
         this.source = source;
         this.target = target;
-        this.trips_num=0;
         this.period=period;
+        this.trips_num=0;
     }
     public int getSubscription_id() {
         return id;

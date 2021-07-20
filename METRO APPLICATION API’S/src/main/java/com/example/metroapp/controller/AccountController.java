@@ -28,6 +28,7 @@ import org.springframework.http.ResponseEntity;
 import javax.validation.Valid;
 import java.util.HashMap;
 
+@CrossOrigin
 @RestController
 public class AccountController {
     @Autowired
@@ -92,6 +93,7 @@ public class AccountController {
         return new ResponseEntity<>(map,HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PostMapping("auth/Login")
     public ResponseEntity<HashMap<String, String>> login(@Valid @RequestBody LoginRequest loginRequest)
     {
