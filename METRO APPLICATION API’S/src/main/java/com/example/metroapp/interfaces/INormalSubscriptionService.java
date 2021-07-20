@@ -9,6 +9,6 @@ public interface INormalSubscriptionService {
     boolean updateSubscripe (Integer user_id,  String source,  String target, int period);
     boolean useSubscription(Integer user_id  , String source, String destination);
     public Integer GetSubscriptionPrice(String source, String target, int period);
-
+    public NormalSubscribtion CheckSubscripe (Integer user_id);
 
 }

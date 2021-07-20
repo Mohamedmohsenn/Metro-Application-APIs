@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+@CrossOrigin
 @RestController
 public class NormalSubscriptionController {
 
@@ -31,6 +32,7 @@ public class NormalSubscriptionController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @CrossOrigin
     @PreAuthorize("hasAnyRole('user')")
     @PostMapping("api/AddNormalSubscription")
     public ResponseEntity<HashMap<String, String>> AddSubscription(@RequestBody NormalSubscribtion normalSubscribtion,@RequestHeader String Authorization)
@@ -101,10 +103,41 @@ public class NormalSubscriptionController {
 
     @PreAuthorize("hasAnyRole('user')")
     @GetMapping("api/GetSubscriptionPrice")
-    public Integer GetSubscriptionPrice(@RequestParam  String source, @RequestParam String target,@RequestParam int period,@RequestHeader String Authorization)
+    public ResponseEntity<?> GetSubscriptionPrice(@RequestParam  String source, @RequestParam String target,@RequestParam int period,@RequestHeader String Authorization)
         {
-           return normalSubscriptionService.GetSubscriptionPrice(source,target,period);
+            HashMap<String, String> map= new HashMap<>();
+            int price= normalSubscriptionService.GetSubscriptionPrice(source,target,period);
+            map.put("price",String.valueOf(price));
+            return new ResponseEntity<>(map,HttpStatus.OK);
         }
+
+    @PreAuthorize("hasAnyRole('user')")
+    @GetMapping("api/CheckSubscripe")
+    public ResponseEntity<?> CheckUserSubscripe(@RequestHeader String Authorization)
+    {
+        String Header[] = Authorization.split(" ");
+        String username = jwtUtils.getUserNameFromJwtToken(Header[1]);
+        UserDetailsImpl userDetails = userDetailsService.loadUserByUsername(username);
+        Integer user_id=userDetails.getId();
+        HashMap<String,String> map= new HashMap<>();
+        NormalSubscribtion subscribtion=normalSubscriptionService.CheckSubscripe(user_id);
+        Integer trips;
+        if(subscribtion.getTrips_num()==null){
+             trips=subscribtion.getSubscription().gettrips_num();
+        }
+        else
+            {
+             trips = subscribtion.getSubscription().gettrips_num() -subscribtion.getTrips_num();
+        }
+        map.put("source",subscribtion.getSource());
+        map.put("target",subscribtion.getTarget());
+        map.put("trips_num",String.valueOf(trips));
+        map.put("Start_date",subscribtion.getStart_date().toString());
+        map.put("End_date",subscribtion.getEnd_date().toString());
+        return new ResponseEntity<>(map,HttpStatus.OK);
+    }
+
+
 
 
 }
