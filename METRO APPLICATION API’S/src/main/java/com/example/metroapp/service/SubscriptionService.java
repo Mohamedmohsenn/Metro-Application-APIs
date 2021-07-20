@@ -1,10 +1,8 @@
 package com.example.metroapp.service;
 
 import com.example.metroapp.interfaces.ISubscriptionService;
-import com.example.metroapp.model.NormalSubscribtion;
-import com.example.metroapp.model.Subscribtion;
+import com.example.metroapp.model.Subscription;
 import com.example.metroapp.repository.SubscriptionRepo;
-import com.example.metroapp.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +14,10 @@ public class SubscriptionService implements ISubscriptionService {
     SubscriptionRepo subscriptionRepo;
 
     @Override
-    public Subscribtion getSubscription(int id)
+    public Subscription getSubscription(int id)
     {
-        List<Subscribtion>Subscriptions=subscriptionRepo.findAll();
-        for(Subscribtion subscription : Subscriptions)
+        List<Subscription>Subscriptions=subscriptionRepo.findAll();
+        for(Subscription subscription : Subscriptions)
         {
             if(subscription.getSubscription_id()==id)
             {
@@ -30,10 +28,10 @@ public class SubscriptionService implements ISubscriptionService {
     }
 
     @Override
-    public boolean addSubscripe (Subscribtion User_data)
+    public boolean addSubscription(Subscription User_data)
     {
-        List<Subscribtion>Subscribtions= subscriptionRepo.findAll();
-        for(Subscribtion subscription : Subscribtions)
+        List<Subscription> subscriptions = subscriptionRepo.findAll();
+        for(Subscription subscription : subscriptions)
         {
             if(subscription.getSubscription_id()==User_data.getSubscription_id())
             {
@@ -46,20 +44,29 @@ public class SubscriptionService implements ISubscriptionService {
     }
 
     @Override
-    public boolean updateSubscripe(int id,int price) {
-         Subscribtion subscribtion= subscriptionRepo.findById(id).get();
-        if(subscribtion==null)
+    public boolean updateSubscription(Subscription subscription) {
+         Subscription sub = subscriptionRepo.findById(subscription.getSubscription_id()).get();
+        if(sub==null)
         {
             return false;
         }
-        subscribtion.setPrice(price);
-        subscriptionRepo.save(subscribtion);
+        sub.setPrice(subscription.getPrice());
+        sub.setregion_num(subscription.getregion_num());
+        sub.setmonths_num(subscription.getmonths_num());
+        sub.settrips_num(subscription.gettrips_num());
+        subscriptionRepo.save(sub);
         return true;
     }
 
     @Override
-    public boolean deleteSubscripe(int id) {
+    public boolean deleteSubscription(int id) {
         subscriptionRepo.deleteById(id);
-        return false;
+        return true;
+    }
+
+    @Override
+    public List<Subscription> getAllSubscription()
+    {
+        return subscriptionRepo.findAll();
     }
 }

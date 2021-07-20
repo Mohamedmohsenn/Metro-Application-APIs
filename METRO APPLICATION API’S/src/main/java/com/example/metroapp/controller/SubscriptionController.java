@@ -1,70 +1,104 @@
 package com.example.metroapp.controller;
 
 
-import com.example.metroapp.interfaces.IStationService;
 import com.example.metroapp.interfaces.ISubscriptionService;
-import com.example.metroapp.model.NormalSubscribtion;
-import com.example.metroapp.model.Station;
-import com.example.metroapp.model.Subscribtion;
-import com.example.metroapp.service.SubscriptionService;
+import com.example.metroapp.model.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.util.List;
 
-@RestController
+@Controller
 public class SubscriptionController {
 
     @Autowired
     ISubscriptionService subscriptionService;
 
-    @GetMapping("/GetSubscription")
-    public ResponseEntity<?> getSubscription(@RequestParam int id)
+    @RequestMapping("/Subscription")
+    public String goToSubscription(Model model)
     {
-        HashMap<String, Subscribtion> map = new HashMap<>();
-        Subscribtion subscribtion = subscriptionService.getSubscription(id);
-        map.put("subscription_data", subscribtion);
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        List<Subscription> subscriptions = subscriptionService.getAllSubscription();
+        model.addAttribute("subscriptions", subscriptions);
+        return "subscription";
     }
 
-    @PostMapping("/AddSubscriptionn")
-    public ResponseEntity<HashMap<String, String>> AddSubscription(@RequestBody Subscribtion subscribtion)
+    @RequestMapping("/AddSubscription")
+    public String goToAddSubscription()
     {
-        HashMap<String, String> map= new HashMap<>();
-            map.put("message","failed");
-        if(subscriptionService.addSubscripe(subscribtion))
-        {
-            map.put("message","success");
-            return new ResponseEntity<>(map,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        return "addSubscription";
     }
-    @PostMapping("/UpdateSubscriptionn")
-    public ResponseEntity<HashMap<String, String>> UpdateSubscription(@RequestParam int id,@RequestParam int price)
+
+    @RequestMapping("/AddNewSubscription")
+    public String AddNewSubscription(Model model, String trips_num, String price, String months_num, String regions_num)
     {
-        HashMap<String, String> map= new HashMap<>();
-        map.put("message","failed");
-        if(subscriptionService.updateSubscripe(id,price))
-        {
-            map.put("message","success");
-            return new ResponseEntity<>(map,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        Subscription subscription = new Subscription();
+        subscription.settrips_num(Integer.valueOf(trips_num));
+        subscription.setPrice(Integer.valueOf(price));
+        subscription.setmonths_num(Integer.valueOf(months_num));
+        subscription.setregion_num(Integer.valueOf(regions_num));
+        String message = addSubscription(subscription);
+        model.addAttribute("message", message);
+        return "redirect:/Subscription";
     }
-    @DeleteMapping("/DeleteSubscriptionn")
-    public ResponseEntity<HashMap<String, String>> DeleteSubscription(@RequestParam int id)
+
+    @RequestMapping("/EditSubscription/{id}")
+    public String goToEditSubscription(Model model, @PathVariable(name = "id") Integer id)
     {
-        HashMap<String, String> map= new HashMap<>();
-        map.put("message","failed");
-        if(subscriptionService.deleteSubscripe(id))
+        Subscription subscription = getSubscription(id);
+        model.addAttribute("subscription", subscription);
+        return "editSubscription";
+    }
+
+    @RequestMapping("/SaveSubscription")
+    public String saveSubscription(Model model, @ModelAttribute("subscription") Subscription subscription)
+    {
+        String message = updateSubscription(subscription);
+        model.addAttribute("message", message);
+        return "redirect:/Subscription";
+    }
+
+    @RequestMapping("/DeleteSubscription/{id}")
+    public String deleteSubscription(Model model, @PathVariable(name = "id") Integer id)
+    {
+        String message = deleteSubscription(id);
+        model.addAttribute("message", message);
+        return "redirect:/Subscription";
+    }
+
+    public Subscription getSubscription(int id)
+    {
+        Subscription subscription = subscriptionService.getSubscription(id);
+        return subscription;
+    }
+
+    public String addSubscription(Subscription subscription)
+    {
+        if(subscriptionService.addSubscription(subscription))
         {
-            map.put("message","success");
-            return new ResponseEntity<>(map,HttpStatus.OK);
+            return "Subscription Added Successfully";
         }
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        return "Subscription Failed";
+    }
+    public String updateSubscription(Subscription subscription)
+    {
+        if(subscriptionService.updateSubscription(subscription))
+        {
+            return "Subscription Updated Successfully";
+        }
+        return "Subscription Failed";
+    }
+    public String deleteSubscription(int id)
+    {
+        if(subscriptionService.deleteSubscription(id))
+        {
+            return "Subscription Deleted Successfully";
+        }
+        return "Subscription Failed";
     }
 
 }

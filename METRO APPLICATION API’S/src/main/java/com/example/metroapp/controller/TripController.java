@@ -32,4 +32,11 @@ public class TripController {
         map.put("Time",tripService.getTripEstimatedTime(source,destination));
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
+
+    @GetMapping("/GetRegionsNumber")
+    public ResponseEntity<?> getNumberOfRegions(String source, String destination)
+    {
+        return new ResponseEntity<>(tripService.getNumberOfRegions(source,destination),HttpStatus.OK);
+    }
+
 }

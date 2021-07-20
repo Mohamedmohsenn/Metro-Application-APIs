@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IBasicStationService {
     public List<Station> getAllStations();
-    public boolean addStation(String[] prevStation,Station station,String[] afterStation);
-    public boolean addStation(String[] prevStation,Station station);
-    public boolean addStation(Station station,String[] afterStation);
-    public boolean addStation(Station station);
+    public boolean addMiddleStation(String prevStation,String stationName,double latitude,double longitude,Integer lineID,String afterStation, Integer region);
+    public boolean addLastStation(String prevStation,String stationName,double latitude,double longitude,Integer lineID, Integer region);
+    public boolean addAfterStation(String stationName,double latitude,double longitude,Integer lineID,String afterStation, Integer region);
+    public boolean addFirstLineStation(String stationName,double latitude,double longitude,Integer lineID, Integer region);
     public boolean updateStation(Integer id,Station newStation);
 }

@@ -39,7 +39,6 @@ public class NormalSubscriptionController {
         String username = jwtUtils.getUserNameFromJwtToken(Header[1]);
         UserDetailsImpl userDetails = userDetailsService.loadUserByUsername(username);
         int userID=userDetails.getId();
-
         HashMap<String, String> map= new HashMap<>();
         if(normalSubscribtion.getEmail() == null ||normalSubscribtion.getnational_id()==null)
         {   System.out.print(normalSubscribtion.getEmail()+normalSubscribtion.getfull_name()+normalSubscribtion.getnational_id());
@@ -56,7 +55,7 @@ public class NormalSubscriptionController {
 
     @PreAuthorize("hasAnyRole('user')")
     @PostMapping("api/UpdateNormalSubscription")
-    public ResponseEntity<HashMap<String, String>> UpdateSubscription(@RequestHeader String Authorization, @RequestParam Integer subscription_id)
+    public ResponseEntity<HashMap<String, String>> UpdateSubscription(@RequestHeader String Authorization, @RequestParam String source, @RequestParam String target,@RequestParam int period )
     {
         String Header[] = Authorization.split(" ");
         String username = jwtUtils.getUserNameFromJwtToken(Header[1]);
@@ -64,12 +63,12 @@ public class NormalSubscriptionController {
         Integer user_id=userDetails.getId();
 
         HashMap<String, String> map= new HashMap<>();
-        if(user_id == null ||subscription_id==null)
-        {   System.out.print(user_id+subscription_id);
+        if(user_id == null ||source==null)
+        {
             map.put("message","failed");
             return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
         }
-        else if(normalSubscriptionService.updateSubscripe(user_id,subscription_id))
+        else if(normalSubscriptionService.updateSubscripe(user_id,source,target,period))
         {
             map.put("message","success");
             return new ResponseEntity<>(map,HttpStatus.OK);
@@ -99,5 +98,13 @@ public class NormalSubscriptionController {
         }
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAnyRole('user')")
+    @GetMapping("api/GetSubscriptionPrice")
+    public Integer GetSubscriptionPrice(@RequestParam  String source, @RequestParam String target,@RequestParam int period,@RequestHeader String Authorization)
+        {
+           return normalSubscriptionService.GetSubscriptionPrice(source,target,period);
+        }
+
 
 }

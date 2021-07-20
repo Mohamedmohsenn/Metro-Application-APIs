@@ -1,14 +1,9 @@
 
 package com.example.metroapp.model;
 
-import com.example.metroapp.repository.SubscriptionRepo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.DynamicInsert;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -33,10 +28,11 @@ public class NormalSubscribtion {
     String target;
     Date start_date;
     Date end_date;
+    int period;
    // @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="subscription_id")
-    Subscribtion subscription;
+   Subscription subscription;
 
     Integer trips_num;
 
@@ -45,7 +41,7 @@ public class NormalSubscribtion {
 
     }
 
-    public NormalSubscribtion(Integer id,String full_name, String email, String phone, String national_id, String country,String city, String source, String target,Subscribtion subscription) {
+    public NormalSubscribtion(Integer id,String full_name, String email, String phone, String national_id, String country,String city, String source, String target,int period) {
         this.id=id;
         this.full_name = full_name;
         this.email = email;
@@ -55,8 +51,8 @@ public class NormalSubscribtion {
         this.city = city;
         this.source = source;
         this.target = target;
-        this.subscription=subscription;
         this.trips_num=0;
+        this.period=period;
     }
     public int getSubscription_id() {
         return id;
@@ -144,11 +140,11 @@ public class NormalSubscribtion {
 
 
 
-    public Subscribtion getSubscription() {
+    public Subscription getSubscription() {
         return subscription;
     }
 
-    public void setSubscription(Subscribtion subscription) {
+    public void setSubscription(Subscription subscription) {
         this.subscription = subscription;
     }
 
@@ -174,5 +170,13 @@ public class NormalSubscribtion {
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(int period) {
+        this.period = period;
     }
 }

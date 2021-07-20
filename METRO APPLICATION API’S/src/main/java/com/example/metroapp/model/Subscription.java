@@ -10,13 +10,13 @@ import java.util.Set;
 
 @Entity
 @Table(name="subscription")
-public class Subscribtion {
+public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer subscription_id;
 
     private Integer trips_num;
-    private Integer station_num;
+    private Integer region_num;
     private Integer months_num;
     private Integer price;
 
@@ -24,15 +24,15 @@ public class Subscribtion {
     @OneToMany(mappedBy="subscription")
     private Set<NormalSubscribtion> normalSubscribtions = new HashSet<>();
 
-    public Subscribtion()
+    public Subscription()
     {
 
     }
 
-    public Subscribtion(Integer subscription_id,Integer trips_num, Integer station_num, Integer months_num, Integer price) {
+    public Subscription(Integer subscription_id, Integer trips_num, Integer region_num, Integer months_num, Integer price) {
         this.subscription_id=subscription_id;
         this.trips_num = trips_num;
-        this.station_num = station_num;
+        this.region_num = region_num;
         this.months_num = months_num;
         this.price = price;
     }
@@ -45,12 +45,12 @@ public class Subscribtion {
         this.trips_num = trips_num;
     }
 
-    public int getstation_num() {
-        return station_num;
+    public int getregion_num() {
+        return region_num;
     }
 
-    public void setstation_num(int station_num) {
-        this.station_num = station_num;
+    public void setregion_num(int region_num) {
+        this.region_num = region_num;
     }
 
     public int getmonths_num() {

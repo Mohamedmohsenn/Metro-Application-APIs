@@ -16,8 +16,11 @@ public class BasicTicketService implements IBasicTicketService
     BasicTicketRepo basicTicketRepo;
 
     @Override
-    public Boolean addBasicTicket(BasicTicket basicTicket)
+    public Boolean addBasicTicket(Integer price, Integer limit)
     {
+        BasicTicket basicTicket = new BasicTicket();
+        basicTicket.setPrice(price);
+        basicTicket.setMaximum_trips(limit);
         List<BasicTicket> basicTickets = basicTicketRepo.findAll();
         boolean isExist = false;
         for(BasicTicket b : basicTickets)
@@ -58,5 +61,11 @@ public class BasicTicketService implements IBasicTicketService
     public List<BasicTicket> selectAllBasicTicket()
     {
         return basicTicketRepo.findAll();
+    }
+
+    @Override
+    public BasicTicket getBasicTicket(Integer id)
+    {
+        return basicTicketRepo.findById(id).get();
     }
 }

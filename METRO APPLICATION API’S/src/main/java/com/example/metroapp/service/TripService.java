@@ -154,6 +154,18 @@ public class TripService implements ITripService {
         }
         return time;
     }
+
+    @Override
+    public Integer getNumberOfRegions(String source, String destination)
+    {
+        Map<String,Boolean> stations = getTripPath(source,destination);
+        Set<Integer> regions = new HashSet<>();
+        for(Map.Entry<String,Boolean> mp : stations.entrySet())
+        {
+            regions.add(stationRepo.findByName(mp.getKey()).getRegion());
+        }
+        return regions.size();
+    }
 }
 
 

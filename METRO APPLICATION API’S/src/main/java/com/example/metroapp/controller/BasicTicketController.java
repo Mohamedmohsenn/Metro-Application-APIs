@@ -5,72 +5,67 @@ import com.example.metroapp.model.BasicTicket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class BasicTicketController
 {
     @Autowired
     private IBasicTicketService basicTicketService;
 
-    @PostMapping("/AddBasicTicket")
-    public ResponseEntity<?> addBasicTicket(@RequestBody BasicTicket basicTicket)
+    @RequestMapping("/AddBasicTicket")
+    public String goToAddBasicTicket()
     {
-        HashMap<String, String> map = new HashMap<>();
-        if(basicTicketService.addBasicTicket(basicTicket))
-        {
-            map.put("message","success");
-        }
-        else
-        {
-            map.put("message","failed");
-        }
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        return "addTicket";
     }
 
-    @PostMapping("/UpdateBasicTicket")
-    public ResponseEntity<?> updateBasicTicket(@RequestBody BasicTicket basicTicket)
+    @RequestMapping("/AddNewBasicTicket")
+    public String AddBasicTicket(Model model, String ticketPrice, String ticketLimit)
     {
-        HashMap<String, String> map = new HashMap<>();
-        if(basicTicketService.updateBasicTicket(basicTicket))
-        {
-            map.put("massage", "success");
-        }
-        else
-        {
-            map.put("massage", "failed");
-        }
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        basicTicketService.addBasicTicket(Integer.valueOf(ticketPrice), Integer.valueOf(ticketLimit));
+        model.addAttribute("message", "Basic Ticket Added Successfully");
+        return "redirect:/BasicTicket";
+    }
+    @RequestMapping("/DeleteBasicTicket/{id}")
+    public String deleteBasicTicket(Model model, @PathVariable(name = "id") Integer id)
+    {
+        basicTicketService.deleteBasicTicket(basicTicketService.getBasicTicket(id));
+        model.addAttribute("message", "Basic Ticket Deleted Successfully");
+        return "redirect:/BasicTicket";
     }
 
-    @PostMapping("/DeleteBasicTicket")
-    public ResponseEntity<?>  deleteBasicTicket(@RequestBody BasicTicket basicTicket)
+    @RequestMapping("/EditBasicTicket/{id}")
+    public String goToEditBasicTicket(Model model, @PathVariable(name = "id") Integer id)
     {
-        HashMap<String, String> map = new HashMap<>();
-        if(basicTicketService.deleteBasicTicket(basicTicket))
-        {
-            map.put("message","success");
-        }
-        else
-        {
-            map.put("message","failed");
-        }
-        return new ResponseEntity<>(map, HttpStatus.OK);
-
+        BasicTicket basicTicket = basicTicketService.getBasicTicket(id);
+        model.addAttribute("basicTicket", basicTicket);
+        return "editTicket";
     }
-    @PostMapping("/SelectAllBasicTicket")
-    public ResponseEntity<?>  selectAllBasicTicket()
+
+    @RequestMapping("/SaveBasicTicket")
+    public String SaveBasicTicket(Model model, @ModelAttribute("basicTicket") BasicTicket basicTicket)
     {
-        Map<String,List<BasicTicket>> map = new HashMap<>();
+        basicTicketService.updateBasicTicket(basicTicket);
+        model.addAttribute("message", "Basic Ticket Updated Successfully");
+        return "redirect:/BasicTicket";
+    }
+
+    @RequestMapping("/BasicTicket")
+    public String goToBasicTicket(Model model)
+    {
+        List<BasicTicket> tickets = selectAllBasicTicket();
+        model.addAttribute("tickets", tickets);
+        return "ticket";
+    }
+    public List<BasicTicket>  selectAllBasicTicket()
+    {
         List<BasicTicket> basicTickets = basicTicketService.selectAllBasicTicket();
-        map.put("Basic_Tickets", basicTickets);
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        return basicTickets;
     }
-
 }

@@ -42,4 +42,11 @@ public class StationService implements IStationService {
         nearestStation.setLines(stationRepo.findById(nearestStation.getId()).get().getLines());
         return nearestStation;
     }
+
+    @Override
+    public List<Station> getAllStations()
+    {
+        List<Station> stations = stationRepo.findAll();
+        return stations;
+    }
 }

@@ -12,6 +12,7 @@ public class Station {
     private String station_name;
     private double station_latitude;
     private double station_longitude;
+    private Integer region;
     private List<Line> lines = new ArrayList<>();
     private List<Station> after = new ArrayList<>();
     private List<Station> previous = new ArrayList<>();
@@ -85,5 +86,13 @@ public class Station {
 
     public void setLongitude(double longitude) {
         this.station_longitude = longitude;
+    }
+
+    public Integer getRegion() {
+        return region;
+    }
+
+    public void setRegion(Integer region) {
+        this.region = region;
     }
 }
