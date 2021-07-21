@@ -35,7 +35,7 @@ public class NormalSubscribtion {
    Subscription subscription;
 
     Integer trips_num;
-
+    Boolean in_use;
     public NormalSubscribtion()
     {
 
@@ -52,6 +52,7 @@ public class NormalSubscribtion {
         this.target = target;
         this.period=period;
         this.trips_num=0;
+        this.in_use=false;
     }
     public int getSubscription_id() {
         return id;
@@ -128,6 +129,13 @@ public class NormalSubscribtion {
     }
 
 
+    public Boolean getIn_use() {
+        return in_use;
+    }
+
+    public void setIn_use(Boolean in_use) {
+        this.in_use = in_use;
+    }
 
     public User getUser() {
         return user;

@@ -40,7 +40,7 @@ public class ChargeController {
     private UserDetailsServiceImpl userDetailsService;
 
     @PreAuthorize("hasAnyRole('user')")
-    @PostMapping(value="/api/v1/charges")
+    @PostMapping(value="/charges")
     public ResponseEntity<HashMap<String, String>> createCharge(@RequestBody ChargeRequest chargeRequest, @RequestHeader String Authorization) throws AuthenticationException, InvalidRequestException, CardException, ApiConnectionException, ApiException {
         HashMap<String, String> map = new HashMap<>();
         String Header[] = Authorization.split(" ");

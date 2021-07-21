@@ -2,15 +2,13 @@ package com.example.metroapp.payload;
 
 public class MachineRequest {
     private String type;
-    private Long userID;
-    private long reqID;
-    private long stationID;
+    private int reqID;
+    private String station;
 
-    public MachineRequest(String type, Long userID, long reqID, long stationID) {
+    public MachineRequest(String type, int reqID, String station) {
         this.type = type;
-        this.userID = userID;
         this.reqID = reqID;
-        this.stationID = stationID;
+        this.station = station;
     }
 
     public String getType() {
@@ -21,27 +19,19 @@ public class MachineRequest {
         this.type = type;
     }
 
-    public Long getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Long userID) {
-        this.userID = userID;
-    }
-
-    public long getReqID() {
+    public int getReqID() {
         return reqID;
     }
 
-    public void setReqID(long reqID) {
+    public void setReqID(int reqID) {
         this.reqID = reqID;
     }
 
-    public long getStationID() {
-        return stationID;
+    public String getStation() {
+        return station;
     }
 
-    public void setStationID(long stationID) {
-        this.stationID = stationID;
+    public void setStation(String station) {
+        this.station = station;
     }
 }

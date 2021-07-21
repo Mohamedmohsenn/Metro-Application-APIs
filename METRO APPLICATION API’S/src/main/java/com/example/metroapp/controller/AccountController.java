@@ -44,7 +44,7 @@ public class AccountController {
     @Autowired
     IPaymentService stripeService;
 
-    @PostMapping("auth/SignUp")
+    @PostMapping("/SignUp")
     public ResponseEntity<HashMap<String, String>> signUp(@Valid @RequestBody SignUpRequest signUpRequest)
     {
         HashMap<String, String> map = new HashMap<>();
@@ -94,7 +94,7 @@ public class AccountController {
     }
 
     @CrossOrigin
-    @PostMapping("auth/Login")
+    @PostMapping("/Login")
     public ResponseEntity<HashMap<String, String>> login(@Valid @RequestBody LoginRequest loginRequest)
     {
         HashMap<String, String> map = new HashMap<>();

@@ -34,7 +34,7 @@ public class TicketController {
     private UserDetailsServiceImpl userDetailsService;
 
     @PreAuthorize("hasAnyRole('user')")
-    @GetMapping("api/GetUserTickets")
+    @GetMapping("/GetUserTickets")
     public ResponseEntity<?> getUserTickets(@RequestHeader String Authorization)
     {
 
@@ -50,7 +50,7 @@ public class TicketController {
     }
 
     @PreAuthorize("hasAnyRole('user')")
-    @GetMapping("api/GetTicketPrice")
+    @GetMapping("/GetTicketPrice")
     public ResponseEntity<?> getTicketPrice(@RequestParam String source,@RequestParam String destination)
     {
         Map<String, Integer> mp = new HashMap<>();
@@ -59,7 +59,7 @@ public class TicketController {
     }
 
     @PreAuthorize("hasAnyRole('user')")
-    @GetMapping("api/BuyTicket")
+    @GetMapping("/BuyTicket")
     public ResponseEntity<?> buyTicket(@RequestHeader String Authorization, @RequestParam Integer price)
     {
         String Header[] = Authorization.split(" ");
