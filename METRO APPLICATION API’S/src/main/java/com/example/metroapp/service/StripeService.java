@@ -31,7 +31,7 @@ public class StripeService implements IPaymentService
     @Autowired
     UserRepo userRepo;
     public Boolean addCharge(ChargeRequest chargeRequest , String customerId, Integer userId) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException {
-        Stripe.apiKey = SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
+        Stripe.apiKey ="sk_test_51JBx77Lp3AgIoHMSRcPiW6gCW4lGu8V5D9D8ebrkjXatrVJqyaYenKejwrCEKW1TnqEz33tyDkJiKcieok1cveDH00X8cdLAs9"; //SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
 
         String cardID = addCard(chargeRequest,customerId);
 
@@ -39,6 +39,7 @@ public class StripeService implements IPaymentService
         Charge c = new Charge();
         StripeResponse response = null;
         try {
+            System.out.print(chargeRequest.getAmount()+ " "+chargeRequest.getExp_month()+" "+chargeRequest.getExp_year()+" "+chargeRequest.getCardnum());
             chargeParams.put("amount", (100*chargeRequest.getAmount()));
             chargeParams.put("currency", "usd");
             chargeParams.put("description", "Metro User Payment");
@@ -61,7 +62,7 @@ public class StripeService implements IPaymentService
     }
 
     public String addCard(ChargeRequest chargeRequest, String custpmerId) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException {
-        Stripe.apiKey = SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
+        Stripe.apiKey ="sk_test_51JBx77Lp3AgIoHMSRcPiW6gCW4lGu8V5D9D8ebrkjXatrVJqyaYenKejwrCEKW1TnqEz33tyDkJiKcieok1cveDH00X8cdLAs9";// SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
 
         Map<String, Object> retrieveParams = new HashMap<String, Object>();
         List<String> expandList = new ArrayList<>();
@@ -107,7 +108,7 @@ public class StripeService implements IPaymentService
 
 
     public String addCustomer(SignUpRequest signUpRequest) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException, JsonProcessingException {
-        Stripe.apiKey = SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
+        Stripe.apiKey ="sk_test_51JBx77Lp3AgIoHMSRcPiW6gCW4lGu8V5D9D8ebrkjXatrVJqyaYenKejwrCEKW1TnqEz33tyDkJiKcieok1cveDH00X8cdLAs9"; //SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
 
         Map<String, Object> customerParams = new HashMap<String, Object>();
 
