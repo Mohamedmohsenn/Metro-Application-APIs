@@ -35,11 +35,11 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
     {
         List<NormalSubscribtion>NormalSubscribtions= normalSubscriptionRepo.findAll();
         User user=userRepo.findById(userID).get();
-        User_data.setSubscription_id(15);
+        User_data.setSubscription_id(1);
         System.out.print(User_data.getSource()+User_data.getTarget()+User_data.getPeriod());
         Subscription subscription1 =  normalSubscriptionService.GetSubscriptionType(User_data.getSource(),User_data.getTarget(),User_data.getPeriod());
         User_data.setSubscription(subscription1);
-        Subscription subscribtion=subscriptionRepo.findById(User_data.getSubscription().getSubscription_id()).get();
+        User_data.setTrips_num(subscription1.gettrips_num());
         Map<String,Boolean> getTripPath = tripService.getTripPath(User_data.getSource(),User_data.getTarget());
         System.out.print(User_data.getSource()+" "+User_data.getTarget());
         for(NormalSubscribtion subscription : NormalSubscribtions)
@@ -49,11 +49,12 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
                 return false;
             }
         }
-        if(user.getBalance()>subscribtion.getPrice()) {
-            user.setBalance(user.getBalance()-subscribtion.getPrice());
+        if(user.getBalance()>subscription1.getPrice()) {
+            user.setBalance(user.getBalance()-subscription1.getPrice());
             User_data.setStart_date(Date.valueOf(LocalDate.now()));
-            User_data.setEnd_date(Date.valueOf(LocalDate.now().plusMonths(subscribtion.getmonths_num())));
+            User_data.setEnd_date(Date.valueOf(LocalDate.now().plusMonths(subscription1.getmonths_num())));
             User_data.setUser(user);
+
             normalSubscriptionRepo.save(User_data);
             user.setNormalSubscribtion(User_data);
             userRepo.save(user);
@@ -79,7 +80,7 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
                 if(user.getBalance()> subscription1.getPrice()) {
                     user.setBalance(user.getBalance()- subscription1.getPrice());
                     user.getNormalSubscribtion().setSubscription(subscription1);
-                    user.getNormalSubscribtion().setTrips_num(0);
+                    user.getNormalSubscribtion().setTrips_num(subscription1.gettrips_num());
                     userRepo.save(user);
                     normalSubscriptionRepo.save(user.getNormalSubscribtion());
                     return  true;
@@ -148,7 +149,6 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
     @Override
     public NormalSubscribtion CheckSubscripe (Integer user_id)
     {
-        //List<NormalSubscribtion>NormalSubscribtions= normalSubscriptionRepo.findAll();
         User user=userRepo.findById(user_id).get();
 
             if(normalSubscriptionRepo.findByUser(user)!=null)

@@ -51,7 +51,6 @@ public class NormalSubscribtion {
         this.source = source;
         this.target = target;
         this.period=period;
-        this.trips_num=0;
         this.in_use=false;
     }
     public int getSubscription_id() {
