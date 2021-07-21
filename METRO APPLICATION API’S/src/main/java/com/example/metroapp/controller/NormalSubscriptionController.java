@@ -55,16 +55,18 @@ public class NormalSubscriptionController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PreAuthorize("hasAnyRole('user')")
     @PostMapping("/UpdateNormalSubscription")
-    public ResponseEntity<HashMap<String, String>> UpdateSubscription(@RequestHeader String Authorization, @RequestParam String source, @RequestParam String target,@RequestParam int period )
-    {
+    public ResponseEntity<HashMap<String, String>> UpdateSubscription(@RequestParam String source, @RequestParam String target,@RequestParam int period,@RequestHeader String Authorization )
+    { System.out.print(source+" "+target+" "+period);
         String Header[] = Authorization.split(" ");
         String username = jwtUtils.getUserNameFromJwtToken(Header[1]);
         UserDetailsImpl userDetails = userDetailsService.loadUserByUsername(username);
         Integer user_id=userDetails.getId();
 
         HashMap<String, String> map= new HashMap<>();
+        map.put("message","NoAction");
         if(user_id == null ||source==null)
         {
             map.put("message","failed");

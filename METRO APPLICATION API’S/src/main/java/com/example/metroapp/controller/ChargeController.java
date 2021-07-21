@@ -28,6 +28,7 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
 
+@CrossOrigin
 @RestController
 public class ChargeController {
     @Autowired
@@ -39,6 +40,7 @@ public class ChargeController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @CrossOrigin
     @PreAuthorize("hasAnyRole('user')")
     @PostMapping(value="/charges")
     public ResponseEntity<HashMap<String, String>> createCharge(@RequestBody ChargeRequest chargeRequest, @RequestHeader String Authorization) throws AuthenticationException, InvalidRequestException, CardException, ApiConnectionException, ApiException {
