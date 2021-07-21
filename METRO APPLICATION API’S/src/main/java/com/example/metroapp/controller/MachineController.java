@@ -19,7 +19,7 @@ public class MachineController {
     @Value("${metroapp.apiKey}")
     private String apiKey;
 
-@PostMapping("/auth/Machine")
+@PostMapping("/Machine")
 public ResponseEntity<HashMap<String, String>> Pass (@RequestHeader String ApiKey, @RequestBody MachineRequest machineRequest){
     HashMap<String, String> map = new HashMap<>();
     if (!ApiKey.equals(apiKey)){
@@ -27,7 +27,7 @@ public ResponseEntity<HashMap<String, String>> Pass (@RequestHeader String ApiKe
         return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
 }
     if (machineRequest.getType().equals("Ticket")){
-        if(iMachineService.ValidateTicket(machineRequest.getUserID(),machineRequest.getReqID(),machineRequest.getStationID())){
+        if(iMachineService.ValidateTicket(machineRequest.getReqID(),machineRequest.getStation())){
             map.put("message","Ticket Validated Successfully..");
             return new ResponseEntity<>(map,HttpStatus.OK);
         }
@@ -38,7 +38,7 @@ public ResponseEntity<HashMap<String, String>> Pass (@RequestHeader String ApiKe
         }
     }
     else if (machineRequest.getType().equals("Sub")){
-        if(iMachineService.ValidateSub(machineRequest.getUserID(),machineRequest.getReqID(),machineRequest.getStationID()))
+        if(iMachineService.ValidateSub(machineRequest.getReqID(),machineRequest.getStation()))
         {
             map.put("message","Subscription Validated Successfully..");
             return new ResponseEntity<>(map,HttpStatus.OK);

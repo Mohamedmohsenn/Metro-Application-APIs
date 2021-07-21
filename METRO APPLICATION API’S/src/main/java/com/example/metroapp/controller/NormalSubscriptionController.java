@@ -34,7 +34,7 @@ public class NormalSubscriptionController {
 
     @CrossOrigin
     @PreAuthorize("hasAnyRole('user')")
-    @PostMapping("api/AddNormalSubscription")
+    @PostMapping("/AddNormalSubscription")
     public ResponseEntity<HashMap<String, String>> AddSubscription(@RequestBody NormalSubscribtion normalSubscribtion,@RequestHeader String Authorization)
     {
         String Header[] = Authorization.split(" ");
@@ -56,7 +56,7 @@ public class NormalSubscriptionController {
     }
 
     @PreAuthorize("hasAnyRole('user')")
-    @PostMapping("api/UpdateNormalSubscription")
+    @PostMapping("/UpdateNormalSubscription")
     public ResponseEntity<HashMap<String, String>> UpdateSubscription(@RequestHeader String Authorization, @RequestParam String source, @RequestParam String target,@RequestParam int period )
     {
         String Header[] = Authorization.split(" ");
@@ -78,7 +78,7 @@ public class NormalSubscriptionController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
     @PreAuthorize("hasAnyRole('user')")
-    @GetMapping("api/UseSubscription")
+    @GetMapping("/UseSubscription")
     public ResponseEntity<?> UseSubscription( @RequestParam String source, @RequestParam String destination,@RequestHeader String Authorization)
     {
         String Header[] = Authorization.split(" ");
@@ -102,7 +102,7 @@ public class NormalSubscriptionController {
     }
 
     @PreAuthorize("hasAnyRole('user')")
-    @GetMapping("api/GetSubscriptionPrice")
+    @GetMapping("/GetSubscriptionPrice")
     public ResponseEntity<?> GetSubscriptionPrice(@RequestParam  String source, @RequestParam String target,@RequestParam int period,@RequestHeader String Authorization)
         {
             HashMap<String, String> map= new HashMap<>();
@@ -112,7 +112,7 @@ public class NormalSubscriptionController {
         }
 
     @PreAuthorize("hasAnyRole('user')")
-    @GetMapping("api/CheckSubscripe")
+    @GetMapping("/CheckSubscripe")
     public ResponseEntity<?> CheckUserSubscripe(@RequestHeader String Authorization)
     {
         String Header[] = Authorization.split(" ");

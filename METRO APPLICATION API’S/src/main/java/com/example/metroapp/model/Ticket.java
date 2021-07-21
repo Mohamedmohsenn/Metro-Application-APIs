@@ -13,7 +13,7 @@ public class Ticket {
     private Integer id;
     private Integer price;
     private Integer maximum_trips;
-    private Boolean valid;
+    private String source_station;
     private User user;
 
 
@@ -43,12 +43,12 @@ public class Ticket {
         this.maximum_trips = maximum_trips;
     }
 
-    public Boolean getValid() {
-        return valid;
+    public String getSource_station() {
+        return source_station;
     }
 
-    public void setValid(Boolean valid) {
-        this.valid = valid;
+    public void setSource_station(String source_station) {
+        this.source_station = source_station;
     }
 
     @ManyToOne

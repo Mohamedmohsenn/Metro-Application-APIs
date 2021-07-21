@@ -52,7 +52,7 @@ public class TicketService implements ITicketService {
 
         Ticket ticket = new Ticket();
         ticket.setPrice(price);
-        ticket.setValid(true);
+        ticket.setSource_station(null);
         if(price == 5)
             ticket.setMaximumTrips(9);
         else if(price == 7)
