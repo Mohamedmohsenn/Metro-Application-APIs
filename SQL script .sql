@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
 --
 -- Host: localhost    Database: metro_app
 -- ------------------------------------------------------
--- Server version	8.0.22
+-- Server version	8.0.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,9 +24,10 @@ DROP TABLE IF EXISTS `admin`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +38,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'sameh','sameh@gmail.com','1111'),(2,'bakr','bakr@gmail.com','2222');
+INSERT INTO `admin` VALUES (1,'sameh','sameh@gmail.com','$2a$10$o8H1HZJhateTLms7BzMdhuawcAF1w0dfefHWQ6m9qcwFAHO1dRv/2',NULL),(2,'bakr','bakr@gmail.com','$2a$10$o8H1HZJhateTLms7BzMdhuawcAF1w0dfefHWQ6m9qcwFAHO1dRv/2',NULL);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,6 +113,7 @@ CREATE TABLE `normalsubscription` (
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `period` int DEFAULT NULL,
+  `in_use` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id_idx` (`user_id`),
   KEY `subscription_id` (`subscription_id`),
@@ -126,7 +128,7 @@ CREATE TABLE `normalsubscription` (
 
 LOCK TABLES `normalsubscription` WRITE;
 /*!40000 ALTER TABLE `normalsubscription` DISABLE KEYS */;
-INSERT INTO `normalsubscription` VALUES (15,10,'mohamed mohsen','mohsen@gmail','1354653','3135153','Egypt','giza','moneb','opera',7,0,'2021-07-17 22:00:00','2021-10-17 22:00:00',3);
+INSERT INTO `normalsubscription` VALUES (15,10,'mohamed mohsen','mohsen@gmail','1354653','3135153','Egypt','giza','moneb','opera',7,119,'2021-07-17 22:00:00','2021-10-17 22:00:00',3,0);
 /*!40000 ALTER TABLE `normalsubscription` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +298,7 @@ CREATE TABLE `ticket` (
   `id` int NOT NULL AUTO_INCREMENT,
   `price` int NOT NULL,
   `maximum_trips` int NOT NULL,
-  `valid` tinyint NOT NULL,
+  `source_station` varchar(45) DEFAULT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_userID_idx` (`user_id`),
@@ -310,7 +312,7 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-INSERT INTO `ticket` VALUES (1,5,9,1,1),(3,5,9,1,9);
+INSERT INTO `ticket` VALUES (1,5,9,'',1);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,7 +348,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (9,'Ahmed','Ahmed Ibrahim','Ahmed@gmail.com','$2a$10$soOgAzKo0YPziSHQKYNFDudzS.n5oInnNgC8kb4tZLrWbWjyC3/Am','0115','1999-02-02',57,'user','cus_JqrwgqkQYJpLWq'),(10,'Mohsen','Mohamed Mohsen','Mohsen@gmail.com','$2a$10$jFpoZOhZpbBnXDOZwPC4ROJVv3DVe/MlIPE/HbhgLUeixKUce2xFK','0113','1999-02-02',20,'user','cus_JqrzkDdu1rl4Zd');
+INSERT INTO `user` VALUES (9,'Ahmed','Ahmed Ibrahim','Ahmed@gmail.com','$2a$10$soOgAzKo0YPziSHQKYNFDudzS.n5oInnNgC8kb4tZLrWbWjyC3/Am','0115','1999-01-31',94,'user','cus_JqrwgqkQYJpLWq'),(10,'Mohsen','Mohamed Mohsen','Mohsen@gmail.com','$2a$10$jFpoZOhZpbBnXDOZwPC4ROJVv3DVe/MlIPE/HbhgLUeixKUce2xFK','0113','1999-02-02',20,'user','cus_JqrzkDdu1rl4Zd');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -359,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-19  1:03:44
+-- Dump completed on 2021-07-21 17:46:55
