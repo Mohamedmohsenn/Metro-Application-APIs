@@ -152,15 +152,13 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
     }
 
     @Override
-    public NormalSubscribtion CheckSubscripe (Integer user_id)
-    {
+    public NormalSubscribtion CheckSubscripe(int user_id) {
         User user=userRepo.findById(user_id).get();
 
-            if(normalSubscriptionRepo.findByUser(user)!=null)
-            {
-                    return user.getNormalSubscribtion() ;
-            }
-
+        if(normalSubscriptionRepo.findByUser(user)!=null)
+        {
+            return user.getNormalSubscribtion() ;
+        }
         return null;
     }
 }
