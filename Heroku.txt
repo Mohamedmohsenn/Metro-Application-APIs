@@ -1,7 +1,6 @@
 mysql://b6a0834837579b:62c0bc26@us-cdbr-east-04.cleardb.com/heroku_121e52bf7696fe0?reconnect=true
 
 
-
 Username: b6a0834837579b
 
 Password: 62c0bc26
@@ -9,3 +8,7 @@ Password: 62c0bc26
 Hostname: us-cdbr-east-04.cleardb.com
 
 Port: 3306
+
+(instead of localhost:8080):-
+Admin-WebAPP Server => https://metro-admin-web-app.herokuapp.com/
+User-APIs Server ====> https://metro-ticket-reservation-app.herokuapp.com/
