@@ -81,6 +81,11 @@ public class NormalSubscriptionService implements INormalSubscriptionService {
                     user.setBalance(user.getBalance()- subscription1.getPrice());
                     user.getNormalSubscribtion().setSubscription(subscription1);
                     user.getNormalSubscribtion().setTrips_num(subscription1.gettrips_num());
+                    user.getNormalSubscribtion().setStart_date(Date.valueOf(LocalDate.now()));
+                    user.getNormalSubscribtion().setEnd_date(Date.valueOf(LocalDate.now().plusMonths(subscription1.getmonths_num())));
+                    user.getNormalSubscribtion().setSource(source);
+                    user.getNormalSubscribtion().setTarget(target);
+                    user.getNormalSubscribtion().setPeriod(period);
                     userRepo.save(user);
                     normalSubscriptionRepo.save(user.getNormalSubscribtion());
                     return  true;

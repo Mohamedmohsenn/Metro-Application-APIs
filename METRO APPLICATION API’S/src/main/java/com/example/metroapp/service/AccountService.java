@@ -52,9 +52,10 @@ public class AccountService implements IAccountService {
 //        userRepo.deleteById(id);
 //    }
 //
-//    public User get(Integer id) {
-//        return userRepo.findById(id).get();
-//    }
+    @Override
+    public User get(Integer id) {
+        return userRepo.findById(id).get();
+    }
 //
 //    public List<User> listAll(){
 //        return userRepo.findAll();

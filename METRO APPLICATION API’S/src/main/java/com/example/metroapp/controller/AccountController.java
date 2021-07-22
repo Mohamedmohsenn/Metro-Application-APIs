@@ -9,12 +9,14 @@ import com.example.metroapp.payload.SignUpRequest;
 import com.example.metroapp.repository.UserRepo;
 import com.example.metroapp.security.jwt.JwtUtils;
 import com.example.metroapp.security.services.UserDetailsImpl;
+import com.example.metroapp.security.services.UserDetailsServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.stripe.exception.*;
 import com.stripe.net.StripeResponse;
 import org.dom4j.tree.BackedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,6 +45,10 @@ public class AccountController {
     JwtUtils jwtUtils;
     @Autowired
     IPaymentService stripeService;
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
 
     @PostMapping("/SignUp")
     public ResponseEntity<HashMap<String, String>> signUp(@Valid @RequestBody SignUpRequest signUpRequest)
@@ -116,5 +122,30 @@ public class AccountController {
             map.put("Authorization",null);
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @CrossOrigin
+    @PreAuthorize("hasAnyRole('user')")
+    @GetMapping("/GetUser")
+    public ResponseEntity<?> GetUser(@RequestHeader String Authorization) {
+        String Header[] = Authorization.split(" ");
+        String username = jwtUtils.getUserNameFromJwtToken(Header[1]);
+        UserDetailsImpl userDetails = userDetailsService.loadUserByUsername(username);
+        Integer user_id = userDetails.getId();
+        HashMap<String, Object> map = new HashMap<>();
+        User user = userService.get(user_id);
+        if (user == null)
+        {
+            map.put("message","failed");
+            return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
+        }
+
+            map.put("fullname",user.getFullname());
+            map.put("email",user.getEmail());
+            map.put("password",user.getPassword());
+            map.put("phone_number",user.getPhone_number());
+            map.put("date_of_birth",user.getDate_of_birth());
+            map.put("balance",user.getBalance().toString());
+        return new ResponseEntity<>(map,HttpStatus.OK);
     }
 }
