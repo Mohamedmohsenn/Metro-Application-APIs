@@ -17,12 +17,5 @@ public class LineService implements ILineService {
     public List<Line> getAllLines() {
         return lineRepo.findAll();
     }
-    @Override
-    public Boolean addNewLine(Integer line_num)
-    {
-        Line line = new Line();
-        line.setId(line_num);
-        lineRepo.save(line);
-        return true;
-    }
+
 }
