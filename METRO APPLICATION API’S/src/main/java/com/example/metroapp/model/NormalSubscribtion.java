@@ -36,10 +36,7 @@ public class NormalSubscribtion {
 
     Integer trips_num;
     Boolean in_use;
-    public NormalSubscribtion()
-    {
-
-    }
+    public NormalSubscribtion(){}
 
     public NormalSubscribtion(String full_name, String email, String phone, String national_id, String country,String city, String source, String target,int period) {
         this.full_name = full_name;

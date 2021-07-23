@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BasicTicketRepo extends JpaRepository<BasicTicket, Integer> {
+    BasicTicket findByPrice(int price);
 }

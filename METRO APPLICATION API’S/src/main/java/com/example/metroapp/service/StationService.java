@@ -2,9 +2,12 @@ package com.example.metroapp.service;
 
 import com.example.metroapp.interfaces.IStationService;
 import com.example.metroapp.model.Station;
+import com.example.metroapp.repository.LineRepo;
 import com.example.metroapp.repository.StationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -12,6 +15,9 @@ import java.util.List;
 public class StationService implements IStationService {
     @Autowired
     private StationRepo stationRepo;
+
+    @Autowired
+    private LineRepo lineRepo;
 
     private double getDistanceBetweenPoints(double lat1, double long1, double lat2,double long2) {
         double distance = org.apache.lucene.util.SloppyMath.haversinMeters(lat1, long1, lat2, long2);
@@ -46,7 +52,12 @@ public class StationService implements IStationService {
     @Override
     public List<Station> getAllStations()
     {
-        List<Station> stations = stationRepo.findAll();
-        return stations;
+        return stationRepo.findAll();
+    }
+
+    @Override
+    public List<Station> getCertainLineStations(Integer id)
+    {
+        return lineRepo.getById(id).getStations();
     }
 }
