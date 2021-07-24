@@ -1,15 +1,19 @@
 package com.example.metroapp.service;
 
 import com.example.metroapp.interfaces.IStationService;
+import com.example.metroapp.model.Line;
 import com.example.metroapp.model.Station;
 import com.example.metroapp.repository.LineRepo;
 import com.example.metroapp.repository.StationRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 @Service
 public class StationService implements IStationService {
@@ -32,6 +36,7 @@ public class StationService implements IStationService {
         nearestStation.setLatitude(stations.get(0).getLatitude());
         nearestStation.setLongitude(stations.get(0).getLongitude());
         nearestStation.setId(stations.get(0).getId());
+        nearestStation.setRegion(stations.get(0).getRegion());
         double minDistance = getDistanceBetweenPoints(latitude,longitude,stations.get(0).getLatitude(),stations.get(0).getLongitude());
         for(int i = 1 ; i < stations.size() ; i++)
         {
@@ -43,6 +48,7 @@ public class StationService implements IStationService {
                 nearestStation.setName(stations.get(i).getName());
                 nearestStation.setLatitude(stations.get(i).getLatitude());
                 nearestStation.setLongitude(stations.get(i).getLongitude());
+                nearestStation.setRegion(stations.get(i).getRegion());
             }
         }
         nearestStation.setLines(stationRepo.findById(nearestStation.getId()).get().getLines());
@@ -50,14 +56,22 @@ public class StationService implements IStationService {
     }
 
     @Override
-    public List<Station> getAllStations()
+    public Map<String, Integer> getAllStations()
     {
-        return stationRepo.findAll();
+        List<Station> stations = stationRepo.findAll();
+        Map<String,Integer> mp = new HashMap<>();
+        for(Station lStation : stations)
+        {
+            for(Line line : lStation.getLines())
+            {
+                if(!mp.containsKey(lStation.getName()))
+                    mp.put(lStation.getName(),line.getId());
+                else
+                    break;
+            }
+        }
+        return mp;
     }
 
-    @Override
-    public List<Station> getCertainLineStations(Integer id)
-    {
-        return lineRepo.getById(id).getStations();
-    }
+
 }

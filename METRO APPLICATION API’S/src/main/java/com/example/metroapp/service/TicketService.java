@@ -10,10 +10,7 @@ import com.example.metroapp.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class TicketService implements ITicketService {
@@ -32,7 +29,7 @@ public class TicketService implements ITicketService {
     @Override
     public Set<Ticket> getUserTickets(Integer userID)
     {
-        Set<Ticket> userTickets = userRepo.findById(userID).get().getTickets();
+        Set<Ticket> userTickets = userRepo.getById(userID).getTickets();
         return userTickets;
     }
 
@@ -41,13 +38,14 @@ public class TicketService implements ITicketService {
     {
         Map<String,Boolean> getTripPath = tripService.getTripPath(source,destination);
         List<BasicTicket> allBasicTickets = basicTicketRepo.findAll();
-        Map<Integer,Integer> TripsAndPrice = new HashMap<>();
+        Map<Integer,Integer> TripsAndPrice = new TreeMap<>();
         for(BasicTicket currentTicket : allBasicTickets)
         {
             TripsAndPrice.put(currentTicket.getMaximum_trips(),currentTicket.getPrice());
         }
         Integer returnedPrice = 0;
         for(Map.Entry<Integer,Integer> mp : TripsAndPrice.entrySet()){
+
             if(mp.getKey() >= getTripPath.size())
             {
                 returnedPrice = mp.getValue();
