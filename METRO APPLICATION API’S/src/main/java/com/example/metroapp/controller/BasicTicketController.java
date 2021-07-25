@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class BasicTicketController {
     @CrossOrigin
     @PreAuthorize("hasAnyRole('user')")
     @GetMapping("GetBasicTickets")
-    public ResponseEntity<?> getAllBasicTickets()
+    public ResponseEntity<?> getAllBasicTickets(@RequestHeader String Authorization)
     {
         Map<String, List<BasicTicket>> map = new HashMap<>();
         map.put("Basic Tickets:",basicTicketService.getAllBasicTickets());
