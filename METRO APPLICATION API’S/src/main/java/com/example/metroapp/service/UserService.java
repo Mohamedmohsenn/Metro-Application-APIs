@@ -33,9 +33,10 @@ public class UserService implements IUserService {
             return false;
         }
         String userPassword = user.getPassword();
+        String encrypt =encoder.encode(newPassword);
         if(encoder.matches(oldPassword,userPassword)){
             try {
-                user.setPassword(newPassword);
+                user.setPassword(encrypt);
                 userRepo.save(user);
                 return true;
             }

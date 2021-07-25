@@ -49,7 +49,7 @@ public class AccountController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-
+    @CrossOrigin
     @PostMapping("/SignUp")
     public ResponseEntity<HashMap<String, String>> signUp(@Valid @RequestBody SignUpRequest signUpRequest)
     {
@@ -139,7 +139,7 @@ public class AccountController {
             map.put("message","failed");
             return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
         }
-
+            map.put("username",user.getUsername());
             map.put("fullname",user.getFullname());
             map.put("email",user.getEmail());
             map.put("password",user.getPassword());

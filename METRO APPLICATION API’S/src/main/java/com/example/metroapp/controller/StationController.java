@@ -27,7 +27,7 @@ public class StationController {
     @CrossOrigin
     @PreAuthorize("hasAnyRole('user')")
     @GetMapping("/GetAllStations")
-    public Map<String,Map<String,Integer>> getAllStations()
+    public Map<String,Map<String,Integer>> getAllStations(@RequestHeader String Authorization)
     {
         Map<String,Map<String,Integer>> map = new HashMap<>();
         Map<String,Integer> mp = stationService.getAllStations();
