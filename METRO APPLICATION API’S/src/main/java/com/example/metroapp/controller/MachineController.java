@@ -21,6 +21,7 @@ public class MachineController {
 
 @PostMapping("/Machine")
 public ResponseEntity<HashMap<String, String>> Pass (@RequestHeader String ApiKey, @RequestBody MachineRequest machineRequest){
+    System.out.println(machineRequest.getReqID());
     HashMap<String, String> map = new HashMap<>();
     if (!ApiKey.equals(apiKey)){
         map.put("message","Error: UnAuthority third party !");

@@ -30,7 +30,7 @@ public class MachineService implements IMachineService {
         Ticket ticket=ticketRepo.getById(ticketID);
         if(ticket==null)
             return false;
-        if(ticket.getSource_station().isBlank()){ //First machine checking
+        if(ticket.getSource_station()==null){ //First machine checking
             ticket.setSource_station(stationName);
             ticketRepo.save(ticket);
             return true;
