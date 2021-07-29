@@ -60,6 +60,7 @@ This section list any major frameworks that is used in buliding the project:
 
 This is a list of things you need to use the software and how to install them.
 * Spring Boot
+* MySQL
 
 ### Installation
 
