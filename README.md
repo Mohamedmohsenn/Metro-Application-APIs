@@ -50,7 +50,7 @@ This Project implement the needed APIs in the front-end project including:
 
 This section list any major frameworks that is used in buliding the project:
 * [Spring Boot](https://spring.io/)
-
+* [MySQL](https://www.mysql.com/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
