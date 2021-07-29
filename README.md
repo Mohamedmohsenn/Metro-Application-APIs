@@ -60,11 +60,12 @@ This section list any major frameworks that is used in buliding the project:
 
 This is a list of things you need to use the software and how to install them.
 * Spring Boot
+* MySQL
 
 ### Installation
 
 1. Install Spring Boot using this Link [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html)
-
+2. Download and install ```MySQL Installer 8.0.26``` using this link [MYSQL](https://dev.mysql.com/downloads/installer/)  
 
 <!-- CONTACT -->
 ## Contact
