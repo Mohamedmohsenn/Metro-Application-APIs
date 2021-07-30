@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `metro_app` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `metro_app`;
+-- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
 --
--- Host: localhost    Database: metro_app
+-- Host: azure-metro-app.mysql.database.azure.com    Database: metro_app
 -- ------------------------------------------------------
--- Server version	8.0.22
+-- Server version	5.6.47.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,13 +25,13 @@ DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(100) NOT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,11 +52,11 @@ DROP TABLE IF EXISTS `basic_ticket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `basic_ticket` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `price` int NOT NULL,
-  `maximum_trips` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `price` int(11) NOT NULL,
+  `maximum_trips` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +65,7 @@ CREATE TABLE `basic_ticket` (
 
 LOCK TABLES `basic_ticket` WRITE;
 /*!40000 ALTER TABLE `basic_ticket` DISABLE KEYS */;
-INSERT INTO `basic_ticket` VALUES (1,5,9),(2,7,16),(7,10,36);
+INSERT INTO `basic_ticket` VALUES (2,7,13),(3,10,36),(9,5,9);
 /*!40000 ALTER TABLE `basic_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,9 +77,9 @@ DROP TABLE IF EXISTS `line`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `line` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,8 +100,8 @@ DROP TABLE IF EXISTS `normalsubscription`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `normalsubscription` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `full_name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `phone` varchar(45) NOT NULL,
@@ -108,18 +110,18 @@ CREATE TABLE `normalsubscription` (
   `city` varchar(45) NOT NULL,
   `source` varchar(45) NOT NULL,
   `target` varchar(45) NOT NULL,
-  `subscription_id` int NOT NULL,
-  `trips_num` int DEFAULT NULL,
+  `subscription_id` int(11) NOT NULL,
+  `trips_num` int(11) DEFAULT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
-  `period` int DEFAULT NULL,
-  `in_use` tinyint NOT NULL DEFAULT '0',
+  `period` int(11) DEFAULT NULL,
+  `in_use` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id_idx` (`user_id`),
   KEY `subscription_id` (`subscription_id`),
   CONSTRAINT `normalsubscription_ibfk_1` FOREIGN KEY (`subscription_id`) REFERENCES `subscription` (`subscription_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +130,7 @@ CREATE TABLE `normalsubscription` (
 
 LOCK TABLES `normalsubscription` WRITE;
 /*!40000 ALTER TABLE `normalsubscription` DISABLE KEYS */;
-INSERT INTO `normalsubscription` VALUES (15,10,'mohamed mohsen','mohsen@gmail','1354653','3135153','Egypt','giza','moneb','opera',7,119,'2021-07-17 22:00:00','2021-10-17 22:00:00',3,0);
+INSERT INTO `normalsubscription` VALUES (15,10,'mohamed mohsen','mohsen@gmail','1354653','3135153','Egypt','giza','Helwan','Maadi',4,60,'2021-07-22 00:00:00','2021-08-22 00:00:00',1,0),(16,18,'Walter','Walter@gmail.com','01135546846','251648489489','Egypt','Giza','Al-Ahram','Helwan',16,175,'2021-07-25 00:00:00','2021-10-25 00:00:00',3,0),(17,19,'Ahmed','Ahmed@gmail.com','012367485859','2099908990','Egypt','giza','Abbassia','Al-Shohadaa',4,59,'2021-07-26 00:00:00','2021-08-26 00:00:00',1,0),(18,22,'Ahmed Ibrahim','ahibrahim.ai7@gmail.com','011565676666','56678658t','Egypy','Giza','Sakiat Mekky','Dokki',1,60,'2021-07-26 00:00:00','2021-08-26 00:00:00',1,0),(19,22,'Ahmed Ibrahim','ahibrahim.ai7@gmail.com','011565676666','56678658t','Egypy','Giza','Sakiat Mekky','Dokki',1,60,'2021-07-26 00:00:00','2021-08-26 00:00:00',1,0);
 /*!40000 ALTER TABLE `normalsubscription` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,13 +142,13 @@ DROP TABLE IF EXISTS `station`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `station` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `region` int NOT NULL,
+  `region` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +157,7 @@ CREATE TABLE `station` (
 
 LOCK TABLES `station` WRITE;
 /*!40000 ALTER TABLE `station` DISABLE KEYS */;
-INSERT INTO `station` VALUES (1,'El-Mounib',29.98109309298193,31.21233061709853,3),(2,'Sakiat Mekky',29.995890494742405,31.208660612727254,3),(3,'Omm El-Masryeen',30.005802536425108,31.20818457049328,3),(4,'Giza',30.01084170020563,31.207198385837035,3),(5,'Faisal',30.01724019639334,31.20393798901821,3),(6,'Cairo University',30.02716229311841,31.20054572631451,3),(7,'El Bohoth',30.035884500122123,31.197755956848162,3),(8,'Dokki',30.038595463899835,31.21276100853596,3),(9,'Opera',30.041948142608952,31.224990989838254,1),(10,'Sadat',30.044254166833316,31.23557105461699,1),(11,'Mohamed Naguib',30.04546088975674,31.244173026314918,1),(12,'Attaba',30.052559572058463,31.24679226864329,1),(13,'Al-Shohadaa',30.0612517058977,31.24610957114708,1),(14,'Masarra',30.070893488382577,31.245094979790103,6),(15,'Road El-Farag',30.080983459101496,31.247275726315976,6),(16,'St. Teresa',30.088024925887158,31.245484511968787,6),(17,'Khalafawy',30.097701536184275,31.245449573536334,6),(18,'Mezallat',30.10385408067541,31.245819455152372,6),(19,'Kolleyyet El-Zeraa',30.11244007895492,31.2487589242472,6),(20,'Shubra El-Kheima',30.126369460411908,31.240731281851094,6),(21,'Bab El Shaaria',30.053120471951143,31.25528303398445,4),(22,'El Geish',30.061775901720186,31.266908885483765,4),(23,'Abdou Pasha',30.064768945615942,31.274784129653227,4),(24,'Abbassia',30.072213370620275,31.28377466687735,4),(25,'Fair Zone',30.073300393447447,31.30096818795872,4),(26,'Stadium',30.073164878902908,31.317274063048057,4),(27,'Koleyet El-Banat ',30.083862280836758,31.32902327885962,4),(28,'Al-Ahram',30.09171265724782,31.32631575629407,4),(29,'Haroun',30.101378447184498,31.332967084901757,10),(30,'Heliopolis Square',30.10783171006869,31.33898553693009,10),(31,'Alf Maskan',30.118675998859498,31.339849829218057,10),(32,'Nadi El-Shams',30.118651550742324,31.33987008133739,10),(33,'El-Nozha',30.127950614439293,31.360689230325953,10),(34,'Hesham Barakat',30.13086779148849,31.373110486371704,10),(35,'Qobaa',30.134802827914225,31.384025430248332,10),(36,'El-Marg',30.157278365146386,31.336694644909585,8),(37,'Ezbet El-Nakhl',30.139872127977718,31.32407207506738,8),(38,'Ain Shams',30.131071650763033,31.31897030180762,8),(39,'El-Matareyya',30.12142054981096,31.31354985722528,8),(40,'Helmeyet El-Zaitoun',30.114212407291372,31.31404404683178,8),(41,'Hadayeq El-Zaitoun',30.105889166913514,31.31048351450316,8),(42,'Saray El-Qobba',30.097649372887698,31.304556529476805,5),(43,'Hammamat El-Qobba',30.091236217450007,31.29890986214482,5),(44,'Kobri El-Qobba',30.087197988850882,31.294105790395392,5),(45,'Manshiet El-Sadr',30.081981895032676,31.287538429091704,5),(46,'El-Demerdash',30.076778992768332,31.277269212317936,5),(47,'Ghamra',30.069027439567193,31.264615881827,5),(48,'Orabi',30.05668886922058,31.24204822420959,1),(49,'Nasser',30.05341113431184,31.238852368573973,1),(50,'Saad Zaghloul',30.036497605320168,31.24037559341199,1),(51,'Al-Sayeda Zeinab',30.02912252031076,31.23715449746652,2),(52,'El-Malek El-Saleh',30.017677591324084,31.231167048106634,2),(53,'Mar Girgis',30.00610443489707,31.229581003563432,2),(54,'El-Zahraa\'',29.995481719090524,31.231171285164883,2),(55,'Dar El-Salam',29.98206443310469,31.242177399751785,2),(56,'Hadayek El-Maadi',29.97023869709702,31.25051267856607,7),(57,'Maadi',29.959917836345756,31.25711767082125,7),(58,'Sakanat El-Maadi',29.953298759041086,31.262950115680972,7),(59,'Tora El-Balad',29.94676046546416,31.272968070785,7),(60,'Kozzika',29.93626623839101,31.281832697333478,7),(61,'Tora El-Asmant',29.925964672555377,31.287540114662633,7),(62,'El-Maasara',29.906062394638237,31.299490374943503,9),(63,'Hadayek Helwan',29.897128186365965,31.30393221200776,9),(64,'Wadi Hof',29.879082088125163,31.313591334777936,9),(65,'Helwan University',29.86945333073545,31.320069426759034,9),(66,'Ain Helwan',29.862567929493235,31.32549592063716,9),(67,'Helwan',29.848980953544377,31.33414613935252,9);
+INSERT INTO `station` VALUES (1,'El-Mounib',29.981093,31.212331,3),(2,'Sakiat Mekky',29.99589,31.208661,3),(3,'Omm El-Masryeen',30.005803,31.208185,3),(4,'Giza',30.010842,31.207198,3),(5,'Faisal',30.01724,31.203938,3),(6,'Cairo University',30.027162,31.200546,3),(7,'El Bohoth',30.035885,31.197756,3),(8,'Dokki',30.038595,31.212761,3),(9,'Opera',30.041948,31.224991,1),(10,'Sadat',30.044254,31.235571,1),(11,'Mohamed Naguib',30.045461,31.244173,1),(12,'Attaba',30.05256,31.246792,1),(13,'Al-Shohadaa',30.061252,31.24611,1),(14,'Masarra',30.070893,31.245095,6),(15,'Road El-Farag',30.080983,31.247276,6),(16,'St. Teresa',30.088025,31.245485,6),(17,'Khalafawy',30.097702,31.24545,6),(18,'Mezallat',30.103854,31.245819,6),(19,'Kolleyyet El-Zeraa',30.11244,31.248759,6),(20,'Shubra El-Kheima',30.126369,31.240731,6),(21,'Bab El Shaaria',30.05312,31.255283,4),(22,'El Geish',30.061776,31.266909,4),(23,'Abdou Pasha',30.064769,31.274784,4),(24,'Abbassia',30.072213,31.283775,4),(25,'Fair Zone',30.0733,31.300968,4),(26,'Stadium',30.073165,31.317274,4),(27,'Koleyet El-Banat ',30.083862,31.329023,4),(28,'Al-Ahram',30.091713,31.326316,4),(29,'Haroun',30.101378,31.332967,10),(30,'Heliopolis Square',30.107832,31.338986,10),(31,'Alf Maskan',30.118676,31.33985,10),(32,'Nadi El-Shams',30.118652,31.33987,10),(33,'El-Nozha',30.127951,31.360689,10),(34,'Hesham Barakat',30.130868,31.37311,10),(35,'Qobaa',30.134803,31.384025,10),(36,'El-Marg',30.157278,31.336695,8),(37,'Ezbet El-Nakhl',30.139872,31.324072,8),(38,'Ain Shams',30.131072,31.31897,8),(39,'El-Matareyya',30.121421,31.31355,8),(40,'Helmeyet El-Zaitoun',30.114212,31.314044,8),(41,'Hadayeq El-Zaitoun',30.105889,31.310484,8),(42,'Saray El-Qobba',30.097649,31.304557,5),(43,'Hammamat El-Qobba',30.091236,31.29891,5),(44,'Kobri El-Qobba',30.087198,31.294106,5),(45,'Manshiet El-Sadr',30.081982,31.287538,5),(46,'El-Demerdash',30.076779,31.277269,5),(47,'Ghamra',30.069027,31.264616,5),(48,'Orabi',30.056689,31.242048,1),(49,'Nasser',30.053411,31.238852,1),(50,'Saad Zaghloul',30.036498,31.240376,1),(51,'Al-Sayeda Zeinab',30.029123,31.237154,2),(52,'El-Malek El-Saleh',30.017678,31.231167,2),(53,'Mar Girgis',30.006104,31.229581,2),(54,'El-Zahraa\'',29.995482,31.231171,2),(55,'Dar El-Salam',29.982064,31.242177,2),(56,'Hadayek El-Maadi',29.970239,31.250513,7),(57,'Maadi',29.959918,31.257118,7),(58,'Sakanat El-Maadi',29.953299,31.26295,7),(59,'Tora El-Balad',29.94676,31.272968,7),(60,'Kozzika',29.936266,31.281833,7),(61,'Tora El-Asmant',29.925965,31.28754,7),(62,'El-Maasara',29.906062,31.29949,9),(63,'Hadayek Helwan',29.897128,31.303932,9),(64,'Wadi Hof',29.879082,31.313591,9),(65,'Helwan University',29.869453,31.320069,9),(66,'Ain Helwan',29.862568,31.325496,9),(67,'Helwan',29.848981,31.334146,9);
 /*!40000 ALTER TABLE `station` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,13 +169,13 @@ DROP TABLE IF EXISTS `station_line`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `station_line` (
-  `station_id` int NOT NULL,
-  `line_id` int NOT NULL,
+  `station_id` int(11) NOT NULL,
+  `line_id` int(11) NOT NULL,
   PRIMARY KEY (`station_id`,`line_id`),
   KEY `fk_line_id_idx` (`line_id`),
   CONSTRAINT `fk_line_id` FOREIGN KEY (`line_id`) REFERENCES `line` (`id`),
   CONSTRAINT `fk_station_id` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,14 +196,14 @@ DROP TABLE IF EXISTS `station_link`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `station_link` (
-  `station_id` int NOT NULL,
-  `after_id` int NOT NULL,
+  `station_id` int(11) NOT NULL,
+  `after_id` int(11) NOT NULL,
   PRIMARY KEY (`station_id`,`after_id`),
   KEY `fk_station_id_1_idx` (`station_id`),
   KEY `fk_station_id_2_idx` (`after_id`),
   CONSTRAINT `fk_station_id_1` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`),
   CONSTRAINT `fk_station_id_2` FOREIGN KEY (`after_id`) REFERENCES `station` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,10 +225,10 @@ DROP TABLE IF EXISTS `stripe_charge`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stripe_charge` (
   `id` varchar(255) NOT NULL,
-  `amount` bigint DEFAULT NULL,
-  `amount_captured` bigint DEFAULT NULL,
-  `amount_refunded` bigint DEFAULT NULL,
-  `application_fee_amount` bigint DEFAULT NULL,
+  `amount` bigint(20) DEFAULT NULL,
+  `amount_captured` bigint(20) DEFAULT NULL,
+  `amount_refunded` bigint(20) DEFAULT NULL,
+  `application_fee_amount` bigint(20) DEFAULT NULL,
   `authorization_code` varchar(255) DEFAULT NULL,
   `calculated_statement_descriptor` varchar(255) DEFAULT NULL,
   `captured` bit(1) DEFAULT NULL,
@@ -248,7 +250,7 @@ CREATE TABLE `stripe_charge` (
   `statement_descriptor_suffix` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,13 +270,14 @@ DROP TABLE IF EXISTS `subscription`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `subscription` (
-  `subscription_id` int NOT NULL AUTO_INCREMENT,
-  `trips_num` int DEFAULT NULL,
-  `region_num` int DEFAULT NULL,
-  `months_num` int DEFAULT NULL,
-  `price` int NOT NULL,
-  PRIMARY KEY (`subscription_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `subscription_id` int(11) NOT NULL AUTO_INCREMENT,
+  `trips_num` int(11) DEFAULT NULL,
+  `region_num` int(11) DEFAULT NULL,
+  `months_num` int(11) DEFAULT NULL,
+  `price` int(11) NOT NULL,
+  PRIMARY KEY (`subscription_id`),
+  UNIQUE KEY `records_UNIQUE` (`trips_num`,`region_num`,`months_num`,`price`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +286,7 @@ CREATE TABLE `subscription` (
 
 LOCK TABLES `subscription` WRITE;
 /*!40000 ALTER TABLE `subscription` DISABLE KEYS */;
-INSERT INTO `subscription` VALUES (1,120,1,1,250),(2,120,1,3,380),(3,120,1,12,480),(4,120,2,1,120),(5,120,2,3,180),(6,120,2,12,250),(7,120,3,1,300);
+INSERT INTO `subscription` VALUES (1,60,1,1,185),(4,60,2,1,230),(7,60,3,1,270),(11,60,4,1,270),(12,60,5,1,360),(13,60,6,1,360),(2,180,1,3,500),(5,180,2,3,630),(14,180,3,3,760),(15,180,4,3,760),(16,180,5,3,1000),(17,180,6,3,1000),(18,730,1,12,2760),(3,730,2,12,2760),(20,730,3,12,2760),(19,730,4,12,2760),(6,730,5,12,3465),(21,730,6,12,3465);
 /*!40000 ALTER TABLE `subscription` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,15 +298,15 @@ DROP TABLE IF EXISTS `ticket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ticket` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `price` int NOT NULL,
-  `maximum_trips` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `price` int(11) NOT NULL,
+  `maximum_trips` int(11) NOT NULL,
   `source_station` varchar(45) DEFAULT NULL,
-  `user_id` int NOT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_userID_idx` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,7 +315,7 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-INSERT INTO `ticket` VALUES (1,5,9,'',1);
+INSERT INTO `ticket` VALUES (5,7,16,'Sadat',10),(6,5,9,'Sadat',10),(8,10,36,'Giza',10),(9,5,9,'Giza',10),(10,2,5,NULL,18),(11,5,9,NULL,18),(12,7,13,NULL,18),(13,10,36,NULL,18),(14,10,36,NULL,9),(15,10,36,NULL,10),(16,5,9,'moneb',19);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +327,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `fullname` varchar(255) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
@@ -337,9 +340,8 @@ CREATE TABLE `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `phone_number_UNIQUE` (`phone_number`),
   UNIQUE KEY `stripe_id_UNIQUE` (`stripe_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,7 +350,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (9,'Ahmed','Ahmed Ibrahim','Ahmed@gmail.com','$2a$10$soOgAzKo0YPziSHQKYNFDudzS.n5oInnNgC8kb4tZLrWbWjyC3/Am','0115','1999-01-31',94,'user','cus_JqrwgqkQYJpLWq'),(10,'Mohsen','Mohamed Mohsen','Mohsen@gmail.com','$2a$10$jFpoZOhZpbBnXDOZwPC4ROJVv3DVe/MlIPE/HbhgLUeixKUce2xFK','0113','1999-02-02',20,'user','cus_JqrzkDdu1rl4Zd');
+INSERT INTO `user` VALUES (9,'Ahmed','Ahmed Ibrahim','Ahmed@gmail.com','$2a$10$soOgAzKo0YPziSHQKYNFDudzS.n5oInnNgC8kb4tZLrWbWjyC3/Am','011595858','1999-07-02',900,'user','cus_JqrwgqkQYJpLWq'),(10,'Mohsen','Mohamed Mohsen','Mohsen@gmail.com','$2a$10$jFpoZOhZpbBnXDOZwPC4ROJVv3DVe/MlIPE/HbhgLUeixKUce2xFK','01151825393','1999-02-02',2041,'user','cus_JqrzkDdu1rl4Zd'),(12,'MBakr','Muhammad Bakr','mbakr7757@gmail.com','$2a$10$HGiAOyCxw/ci3uY20d1kUuIyD/afbo.a81x.f8w0F/twbDG.YBsKu','01151825393','1999-06-09',0,'user','cus_Juikzhi2ZeiYhY'),(18,'Walter','Walter White','Walter@gmail.com','$2a$10$C5l5AK6YrTPCkksyqd1/c.xcHjwFRDreenbFc8jcBYjqM1G.OOcge','0116646464','2008-07-09',619776,'user','cus_Jv5RU9B50XNKnl'),(19,'Sameh10','Mohamed Sameh','mosameh@gmail.com','$2a$10$57ZpbDhxhgQBWyScBhEnb.vsbUXTUl6jdP421MAUe3o5iFcbG7gRm','01116898357','1999-11-29',303,'user','cus_JvEnASzSTvG1gs'),(20,'Ahibrahim4','Ahmed t','Ahibrahim@gmail.com','$2a$10$X0OOChHFuXQnFP8OQz9ve.T11hIoMdlSJ1lYJ6dMkJr20suPSsnxC','0114232','1998-07-10',0,'user','cus_JvFBOv9dv03Dzv'),(21,'Pinkman','Jesse','jesse@gmail.com','$2a$10$gHd6cn2YluHFj9tFoeyPP.r2L7tEhiqHF1ybNAGEq5SwMsfmLGp0C','9999','2021-07-26',0,'user','cus_JvFYTOFmZiJggn'),(22,'Ahibrahim.ai7','Ahmed Ibrahim','Ahmed7777@gmail.com','$2a$10$7U/SwDseAIcJd9kGlfk9w.V0R3.dDH3I7vLLfDyaR2if.QI.6qnkm','0114642845','1999-02-05',1810,'user','cus_JvJ0MRJJeMeCDD');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -361,4 +363,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-21 19:57:13
+-- Dump completed on 2021-07-30 12:43:48

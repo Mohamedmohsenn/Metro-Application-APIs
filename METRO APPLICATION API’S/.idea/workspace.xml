@@ -4,43 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19892fe4-9b2d-44b5-896f-4987eb9dc5eb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_12_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_12_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_6_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36c32cc6-86d9-4ecd-b0b6-4787ab80f9c6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36c32cc6-86d9-4ecd-b0b6-4787ab80f9c6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/metroapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/metroapp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/BasicTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/BasicTicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/LineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/LineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/NormalSubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/NormalSubscriptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/StationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/SubscriptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/TripController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/controller/TripController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/IBasicStationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/IBasicStationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/IBasicTicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/IBasicTicketService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ILineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ILineService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/INormalSubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/INormalSubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/IStationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/IStationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ISubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ISubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ITripService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/interfaces/ITripService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/model/NormalSubscribtion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/model/NormalSubscribtion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/model/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/model/Station.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/model/Subscribtion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/model/Subscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/repository/SubscriptionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/repository/SubscriptionRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/BasicStationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/BasicStationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/BasicTicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/BasicTicketService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/LineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/LineService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/NormalSubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/NormalSubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/StationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/StationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/SubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TripService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/metroapp/service/TripService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SQL script.sql" beforeDir="false" />
-    </list>
+    <list default="true" id="19892fe4-9b2d-44b5-896f-4987eb9dc5eb" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,7 +46,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Heroku-MetroAPIs/METRO APPLICATION API’S" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -110,20 +74,19 @@
       <recent name="com.example.metroapp.controller" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MetroappApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="metroapp" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.metroapp.MetroappApplication" />
@@ -132,7 +95,7 @@
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -169,11 +132,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

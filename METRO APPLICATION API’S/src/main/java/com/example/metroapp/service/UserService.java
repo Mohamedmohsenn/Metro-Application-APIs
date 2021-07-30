@@ -33,11 +33,10 @@ public class UserService implements IUserService {
             return false;
         }
         String userPassword = user.getPassword();
-        oldPassword=encoder.encode(oldPassword);
-        newPassword=encoder.encode(newPassword);
-        if(oldPassword.equals(userPassword)){
+        String encrypt =encoder.encode(newPassword);
+        if(encoder.matches(oldPassword,userPassword)){
             try {
-                user.setPassword(newPassword);
+                user.setPassword(encrypt);
                 userRepo.save(user);
                 return true;
             }
@@ -57,8 +56,7 @@ public class UserService implements IUserService {
             return false;
         }
         String userPassword = user.getPassword();
-        password=encoder.encode(password);
-        if(password.equals(userPassword)){
+        if(encoder.matches(password,userPassword)){
             try {
                 user.setEmail(newEmail);
                 userRepo.save(user);
@@ -73,7 +71,6 @@ public class UserService implements IUserService {
     }
     @Override
     public Boolean changeUserPhoneNum(String username,String password,String newPhoneNum){
-
         User user= userRepo.findByUsername(username)
                 .orElse(null);
         if (user == null)
@@ -81,8 +78,7 @@ public class UserService implements IUserService {
             return false;
         }
         String userPassword = user.getPassword();
-        password=encoder.encode(password);
-        if(password.equals(userPassword)){
+        if(encoder.matches(password,userPassword)){
             try {
                 user.setPhone_number(newPhoneNum);
                 userRepo.save(user);

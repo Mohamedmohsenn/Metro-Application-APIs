@@ -23,6 +23,7 @@ import com.example.metroapp.properties.SpringBootStripeProperties;
 import com.example.metroapp.model.StripeCharge;
 import com.stripe.Stripe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,9 +31,10 @@ public class StripeService implements IPaymentService
 {
     @Autowired
     UserRepo userRepo;
-    public Boolean addCharge(ChargeRequest chargeRequest , String customerId, Integer userId) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException {
-        Stripe.apiKey ="sk_test_51JBx77Lp3AgIoHMSRcPiW6gCW4lGu8V5D9D8ebrkjXatrVJqyaYenKejwrCEKW1TnqEz33tyDkJiKcieok1cveDH00X8cdLAs9"; //SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
+    private String apiKey="sk_test_51JBx77Lp3AgIoHMSRcPiW6gCW4lGu8V5D9D8ebrkjXatrVJqyaYenKejwrCEKW1TnqEz33tyDkJiKcieok1cveDH00X8cdLAs9";
 
+    public Boolean addCharge(ChargeRequest chargeRequest , String customerId, Integer userId) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException {
+        Stripe.apiKey = apiKey;
         String cardID = addCard(chargeRequest,customerId);
 
         Map<String, Object> chargeParams = new HashMap<String, Object>();
@@ -50,6 +52,7 @@ public class StripeService implements IPaymentService
         } catch (StripeException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return false;
         }
         if (response != null){
             User user = userRepo.getById(userId);
@@ -62,7 +65,7 @@ public class StripeService implements IPaymentService
     }
 
     public String addCard(ChargeRequest chargeRequest, String custpmerId) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException {
-        Stripe.apiKey ="sk_test_51JBx77Lp3AgIoHMSRcPiW6gCW4lGu8V5D9D8ebrkjXatrVJqyaYenKejwrCEKW1TnqEz33tyDkJiKcieok1cveDH00X8cdLAs9";// SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
+        Stripe.apiKey = apiKey;
 
         Map<String, Object> retrieveParams = new HashMap<String, Object>();
         List<String> expandList = new ArrayList<>();
@@ -98,6 +101,7 @@ public class StripeService implements IPaymentService
         } catch (StripeException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return null;
         }
 
         if (response != null)
@@ -108,7 +112,7 @@ public class StripeService implements IPaymentService
 
 
     public String addCustomer(SignUpRequest signUpRequest) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException, JsonProcessingException {
-        Stripe.apiKey ="sk_test_51JBx77Lp3AgIoHMSRcPiW6gCW4lGu8V5D9D8ebrkjXatrVJqyaYenKejwrCEKW1TnqEz33tyDkJiKcieok1cveDH00X8cdLAs9"; //SpringBootStripeProperties.springBootStripeData.get("stripe.api.key").toString();
+        Stripe.apiKey = apiKey;
 
         Map<String, Object> customerParams = new HashMap<String, Object>();
 

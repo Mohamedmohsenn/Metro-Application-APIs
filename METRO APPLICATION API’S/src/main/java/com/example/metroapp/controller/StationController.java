@@ -27,7 +27,7 @@ public class StationController {
     @CrossOrigin
     @PreAuthorize("hasAnyRole('user')")
     @GetMapping("/GetAllStations")
-    public Map<String,Map<String,Integer>> getAllStations()
+    public Map<String,Map<String,Integer>> getAllStations(@RequestHeader String Authorization)
     {
         Map<String,Map<String,Integer>> map = new HashMap<>();
         Map<String,Integer> mp = stationService.getAllStations();
@@ -39,8 +39,9 @@ public class StationController {
     @PreAuthorize("hasAnyRole('user')")
     @GetMapping("/GetClosestStation")
     public ResponseEntity<?> getClosestStation(@RequestParam double latitude,@RequestParam double longitude) {
-        Map<String, Station> map = new HashMap<>();
-        map.put("stations",stationService.getClosestStation(latitude,longitude));
+        Map<String, String> map = new HashMap<>();
+        Station station =stationService.getClosestStation(latitude,longitude);
+        map.put("station",station.getName());
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
