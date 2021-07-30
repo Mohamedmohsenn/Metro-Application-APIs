@@ -5,10 +5,9 @@ import com.example.metroapp.interfaces.ITripService;
 import com.example.metroapp.model.NormalSubscribtion;
 import com.example.metroapp.model.Station;
 import com.example.metroapp.model.Ticket;
-import com.example.metroapp.repository.NormalSubscriptionRepo;
-import com.example.metroapp.repository.StationRepo;
-import com.example.metroapp.repository.SubscriptionRepo;
-import com.example.metroapp.repository.TicketRepo;
+import com.example.metroapp.model.User;
+import com.example.metroapp.repository.*;
+import org.hibernate.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +22,19 @@ public class MachineService implements IMachineService {
     @Autowired
     TicketRepo ticketRepo;
     @Autowired
+    UserRepo userRepo;
+    @Autowired
     NormalSubscriptionRepo normalSubscriptionRepo;
     @Autowired
     ITripService iTripService;
     public Boolean ValidateTicket(int ticketID,String stationName){
-        Ticket ticket=ticketRepo.getById(ticketID);
+        Ticket ticket;
+        try {
+            ticket=ticketRepo.findById(ticketID).orElse(null);
+        }
+        catch (Exception e){
+            return false;
+        }
         if(ticket==null)
             return false;
         if(ticket.getSource_station()==null){ //First machine checking
@@ -50,7 +57,16 @@ public class MachineService implements IMachineService {
     }
     public Boolean ValidateSub(int SubID,String stationName){
         Date currentDate= java.sql.Date.valueOf(LocalDate.now());
-        NormalSubscribtion normalSubscribtion = normalSubscriptionRepo.getById(SubID);
+        NormalSubscribtion normalSubscribtion;
+        try {
+            normalSubscribtion = normalSubscriptionRepo.findById(SubID).orElse(null);
+        }
+            catch (Exception e)
+            {
+                return false;
+            }
+        if (normalSubscribtion==null)
+            return false;
         Map<String,Boolean> path= iTripService.getTripPath(normalSubscribtion.getSource(),normalSubscribtion.getTarget());
         if(normalSubscribtion.getTrips_num()==0) //no trips to use
             return false;
@@ -68,6 +84,13 @@ public class MachineService implements IMachineService {
             normalSubscribtion.setTrips_num(trips-1);
             normalSubscribtion.setIn_use(false);
             normalSubscriptionRepo.save(normalSubscribtion);
+            User user= normalSubscribtion.getUser();
+            int id =user.getUser_id();
+            user=userRepo.findById(id).orElse(null);
+            if (user==null)
+                return false;
+            user.setNormalSubscribtion(normalSubscribtion);
+            userRepo.save(user);
             return true;
         }
     }

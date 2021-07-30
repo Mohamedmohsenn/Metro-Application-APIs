@@ -31,8 +31,7 @@ public class StripeService implements IPaymentService
 {
     @Autowired
     UserRepo userRepo;
-    @Value("${stripe.api.key}")
-    private String apiKey;
+    private String apiKey="sk_test_51JBx77Lp3AgIoHMSRcPiW6gCW4lGu8V5D9D8ebrkjXatrVJqyaYenKejwrCEKW1TnqEz33tyDkJiKcieok1cveDH00X8cdLAs9";
 
     public Boolean addCharge(ChargeRequest chargeRequest , String customerId, Integer userId) throws AuthenticationException, InvalidRequestException, ApiConnectionException, CardException, ApiException {
         Stripe.apiKey = apiKey;

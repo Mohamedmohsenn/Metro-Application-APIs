@@ -123,9 +123,10 @@ public class NormalSubscriptionController {
         Integer user_id=userDetails.getId();
         HashMap<String,String> map= new HashMap<>();
         NormalSubscribtion subscribtion=normalSubscriptionService.CheckSubscripe(user_id);
+        map.put("Subscription_id",String.valueOf(subscribtion.getSubscription_id()));
         map.put("source",subscribtion.getSource());
         map.put("target",subscribtion.getTarget());
-        map.put("trips_num",String.valueOf(subscribtion.getSubscription().gettrips_num()));
+        map.put("trips_num",String.valueOf(subscribtion.getTrips_num()));
         map.put("Start_date",subscribtion.getStart_date().toString());
         map.put("End_date",subscribtion.getEnd_date().toString());
         return new ResponseEntity<>(map,HttpStatus.OK);
