@@ -74,7 +74,7 @@ This is a list of things you need to use the software and how to install them.
 * Ahmed Mostafa - [LinkedIn](https://www.linkedin.com/in/ahmed-mostafa-0142001b2/) - kudo7474@gmail.com
 * Muhammad Bakr - [LinkedIn](https://www.linkedin.com/in/muhammad-bakr-3aa7bb155/) - mbakr7757@gmail.com
 * Mohamed Sameh - [LinkedIn](https://www.linkedin.com/in/mohamed-sameh-59ba781a2/) - mohamedsameh99909@gmail.com
-* Mohamed Mohsen - [LinkedIn](https://www.linkedin.com/in/mohamed-mohsen-4226661a3/) - midomohsen11@gmail.com
+* Mohamed Mohsen - [LinkedIn](https://www.linkedin.com/in/mohamed-mohsen-4226661a3/) - mohamed.mohsen.abdelsalaam@gmail.com
 
 Project Link: [Metro Application APIs](https://github.com/Mohamedmohsenn/Metro-Application-APIs)
 
